@@ -1,0 +1,478 @@
+/* ======== RESETEO ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: #000;
+    overflow: hidden;
+}
+
+/* ======== CONTENEDOR GENERAL ======== */
+.scroll-container {
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* ======== SECCIONES ======== */
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px;
+    flex-direction: column;
+}
+
+.inicio {
+    background-image: url('../images/fondo2.png');
+}
+
+.experiencia {
+    background-image: url('../images/fondo2.jpg');
+}
+
+.contacto {
+    background-image: url('../images/fondo3.jpg');
+}
+
+/* ======== HEADER ======== */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+.logo {
+    position: absolute;
+    left: 30px;
+}
+
+.logo img {
+    height: 55px;
+    width: auto;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    margin-top: 5px;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+/* ======== NAV ======== */
+.nav-links {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    color: #f2f0eb;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 15px;
+    font-weight: 650;
+    transition: color 0.3s ease;
+    font-size: 18px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: #ffd700;
+    background-color: transparent;
+}
+
+/* ======== SECCIÓN INICIO ======== */
+.inicio-content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+
+/* ======== TÍTULO PRINCIPAL ======== */
+.titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.inicio .titulo {
+    transform: translateX(50%);
+}
+
+.titulo h1 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-size: 4rem;
+    line-height: 1.05;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 45%);
+}
+
+.titulo span {
+    display: block;
+    text-align: right;
+    width: 100%;
+    font-size: 6.5rem;
+}
+
+.bienvenida {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #f2f0eb;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    max-width: 550px;
+    line-height: 1.5;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* ======== BOTÓN "CONÓCENOS" ======== */
+
+.btn-conocenos {
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: #ffd700;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Hover dinámico */
+.btn-conocenos:hover {
+    background: #e6c200;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Ícono de flecha */
+.btn-conocenos i {
+    transition: transform 0.3s ease;
+}
+
+.btn-conocenos:hover i {
+    transform: translateX(6px);
+}
+
+/* ======== POLAROID ======== */
+/* ======== IMÁGENES ======== */
+.imagenes {
+    position: relative;
+    width: 300px; /* tamaño fijo para evitar movimiento con zoom */
+    height: 400px;
+    margin-top: -5%;
+    margin-left: -10%;
+}
+
+/* ======== POLAROID PRINCIPAL ======== */
+.polaroid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transform: scale(1.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+}
+
+/* ======== POLAROID SECUNDARIA (fondo) ======== */
+.polaroid.secundaria {
+    position: absolute;
+    top: 50px; /* pequeño desplazamiento para efecto realista */
+    left: 130px;
+    transform: rotate(5deg) scale(1.05);
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover (solo amplía la imagen en primer plano) */
+.polaroid:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.polaroid.secundaria:hover {
+    transform: rotate(10deg) scale(1.08);
+}
+
+/* ======== IMÁGENES INTERNAS ======== */
+.polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+
+/* ======== TEXTO GENERAL ======== */
+h1,
+h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+p {
+    line-height: 1.6;
+    font-weight: 300;
+    font-size: 1rem;
+}
+/* 📱 Tablets medianas */
+@media (max-width: 992px) {
+    .main-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding: 10px 0;
+        gap: 8px;
+    }
+
+    .logo {
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .logo img {
+        height: 50px;
+        margin: 0 auto;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    .nav-item {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+    .inicio-content {
+        flex-direction: column;
+        gap: 40px;
+        height: auto;
+        padding-top: 80px;
+    }
+
+    .inicio .titulo {
+        transform: translateX(5%);
+    }
+
+    .imagenes {
+        width: 240px;
+        height: 320px;
+    }
+
+    .polaroid {
+        transform: scale(1);
+    }
+
+    .polaroid.secundaria {
+        top: 30px;
+        left: 80px;
+        transform: rotate(6deg) scale(0.95);
+    }
+
+    .titulo {
+        align-items: center;
+        text-align: center;
+        transform: none;
+    }
+
+    .titulo h1,
+    .titulo span {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .bienvenida {
+        text-align: center;
+        padding: 0;
+    }
+
+    .btn-conocenos {
+        align-self: center;
+    }
+
+}
+
+/* 📱 Móviles pequeños */
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 0;
+        height: auto;
+        gap: 6px;
+        backdrop-filter: blur(3px);
+    }
+
+    .logo {
+        position: static;
+        margin: 0 auto;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav-item {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .inicio-content {
+        flex-direction: column;
+        gap: 30px;
+        height: auto;
+        padding: 60px 0;
+    }
+
+    .imagenes {
+        width: 200px;
+        height: 260px;
+    }
+
+    .polaroid {
+        transform: scale(1);
+        padding: 12px;
+    }
+
+    .polaroid.secundaria {
+        top: 25px;
+        left: 60px;
+        transform: rotate(5deg) scale(0.9);
+    }
+
+    .inicio .titulo {
+        transform: translateX(5%);
+    }
+
+    .titulo {
+        align-items: center;
+        text-align: center;
+        transform: none;
+    }
+
+    .titulo h1,
+    .titulo span {
+        font-size: 2.4rem;
+        line-height: 1.1;
+        text-align: center;
+    }
+
+    .bienvenida {
+        font-size: 1rem;
+        max-width: 320px;
+        text-align: center;
+        padding: 0;
+    }
+
+    .btn-conocenos {
+        align-self: center;
+        font-size: 1rem;
+        padding: 10px 22px;
+    }
+}
+
+@media (max-width: 1280px) and (max-height: 634px) {
+    .polaroid,
+    .inicio .polaroid,
+    .imagenes,
+    .imagen-hero,
+    .galeria,
+    .fotos-inicio {
+        display: none !important;
+    }
+
+    .titulo {
+        transform: none !important;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .titulo h1, 
+    .titulo span {
+        text-align: center;
+    }
+
+    .bienvenida {
+        text-align: center;
+        padding: 0;
+    }
+
+    .btn-conocenos {
+        margin: 25px auto 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+}
