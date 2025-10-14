@@ -44,8 +44,6 @@
   }
   
   .inicio { background-image: url('../images/fondo2.png'); }
-  .experiencia { background-image: url('../images/fondo2.jpg'); }
-  .contacto { background-image: url('../images/fondo3.jpg'); }
   
   /* ======== HEADER ======== */
   .main-header {
@@ -102,15 +100,14 @@
     background-color: transparent;
   }
   
-  /* ======== INICIO CONTENT ======== */
+  /* ======== CONTENIDO DE INICIO ======== */
   .inicio-content {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px;
-    flex-wrap: wrap;
+    flex-direction: column;
     position: relative;
   }
   
@@ -126,17 +123,17 @@
     100% { opacity: 1; transform: translateY(0); }
   }
   
-  /* ======== SECUENCIA DE ENTRADA ======== */
+  /* ======== ENTRADA DE TEXTO ======== */
   .linea-superior {
     opacity: 0;
-    animation: slideFromRightSmooth 0.8s ease-out forwards;
+    animation: slideFromRightSmooth 0.6s ease-out forwards;
     animation-delay: 0.1s;
   }
   
   .linea-inferior {
     opacity: 0;
-    animation: slideFromRightSmooth 0.8s ease-out forwards;
-    animation-delay: 0.6s;
+    animation: slideFromRightSmooth 0.6s ease-out forwards;
+    animation-delay: 0.5s;
   }
   
   .bienvenida {
@@ -168,16 +165,18 @@
     text-decoration: none;
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
     cursor: pointer;
+    /* 🔹 Separamos transform del resto para no interferir con animaciones */
     transition:
-      transform 0.25s ease-out,
+      background 0.25s ease-out,
       box-shadow 0.25s ease-out,
-      background 0.25s ease-out;
+      transform 0.25s ease-out;
+    will-change: transform;
   }
   
   .btn-conocenos:hover {
     background: #e6c200;
     box-shadow: 0 8px 25px rgba(255, 217, 0, 0.45);
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-3px) scale(1.03);
   }
   
   .btn-conocenos:active {
@@ -193,116 +192,12 @@
     transform: translateX(6px);
   }
   
-  /* ======== IMÁGENES POLAROID ======== */
-  .imagenes {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    margin-top: -5%;
-    margin-left: -10%;
-  }
-  
-  .polaroid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-    padding: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0;
-    z-index: 1;
-    transform: scale(1.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.3s ease;
-  }
-  
-  .polaroid img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 6px;
-  }
-  
-  .polaroid.secundaria {
-    top: 50px;
-    left: 130px;
-    transform: rotate(5deg) scale(1.05);
-    z-index: 2;
-  }
-  
-    /* ======== ANIMACIONES ======== */
-    @keyframes slideFromLeftSmoothMain {
-      0% {
-        opacity: 0;
-        transform: translateX(-100px) scale(1.1);
-      }
-      60% {
-        opacity: 1;
-        transform: translateX(8px) scale(1.1);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0) scale(1.1);
-      }
-    }
-    
-    @keyframes slideFromLeftSmoothSecondary {
-      0% {
-        opacity: 0;
-        transform: translateX(-100px) rotate(5deg) scale(1.05);
-      }
-      60% {
-        opacity: 1;
-        transform: translateX(8px) rotate(5deg) scale(1.05);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0) rotate(5deg) scale(1.05);
-      }
-    }
-  
-  .polaroid {
-    animation: slideFromLeftSmoothMain 0.8s ease-out forwards;
-    animation-delay: 0.1s;
-  }
-  
-  .polaroid.secundaria {
-    animation: slideFromLeftSmoothSecondary 0.8s ease-out forwards;
-    animation-delay: 0.25s;
-  }
-  
-  /* EFECTO HOVER Y ACTIVE */
-  .polaroid:hover {
-    transform: scale(1.15);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-  }
-  
-  .polaroid.secundaria:hover {
-    transform: rotate(5deg) scale(1.08);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  }
-  
-  .polaroid.active {
-    z-index: 5 !important;
-    transform: scale(1.18) !important;
-  }
-  
-  /* ======== RESPONSIVE (omitido para brevedad, igual que el tuyo original) ======== */
   /* ======== TÍTULO PRINCIPAL ======== */
   .titulo {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  .inicio .titulo {
-    transform: translateX(50%);
+    align-items: center;
+    text-align: center;
   }
   
   .titulo h1 {
@@ -317,230 +212,141 @@
   
   .titulo span {
     display: block;
-    text-align: right;
+    text-align: center;
     width: 100%;
     font-size: 6.5rem;
   }
   
   .bienvenida {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     max-width: 550px;
     line-height: 1.5;
-    text-align: right;
-    font-weight: 500;
+    text-align: center;
+    margin-top: 20px;
   }
   
+  html {
+    scroll-behavior: auto; /* desactiva el scroll suave global */
+  }
   
-  /* 📱 Tablets medianas */
+  /* Contenedor principal */
+  .scroll-container {
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  /* Secciones normales (sin efecto cuando el usuario hace scroll manual) */
+  .section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+  }
+  
+  /* Efecto visual SOLO cuando el scroll se hace por clic */
+  .section.scrolling-target {
+    transform: scale(1.02);
+    opacity: 0.9;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+  }
+  
+  .somos { background-color: #349534; }
+  .experiencia { background-color: #953480; }
+  .contacto { background-color: #346995;}
+
+  
+  
+  
+  /* ======== RESPONSIVE ======== */
   @media (max-width: 992px) {
     .main-header {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        padding: 10px 0;
-        gap: 8px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      padding: 10px 0;
+      gap: 8px;
     }
   
     .logo {
-        position: static;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
+      position: static;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   
     .logo img {
-        height: 50px;
-        margin: 0 auto;
+      height: 50px;
+      margin: 0 auto;
     }
   
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-        width: 100%;
-        margin-top: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
   
     .nav-item {
-        font-size: 1rem;
-        padding: 6px 12px;
-    }
-  
-    .inicio-content {
-        flex-direction: column;
-        gap: 40px;
-        height: auto;
-        padding-top: 80px;
-    }
-  
-    .inicio .titulo {
-        transform: translateX(5%);
-        margin-top: 4%;
-    }
-    
-    .imagenes {
-        width: 240px;
-        height: 320px;
-    }
-  
-    .polaroid {
-        transform: scale(1);
-    }
-  
-    .polaroid.secundaria {
-        top: 30px;
-        left: 80px;
-        transform: rotate(6deg) scale(0.95);
-    }
-  
-    .titulo {
-        align-items: center;
-        text-align: center;
-        transform: none;
+      font-size: 1rem;
+      padding: 6px 12px;
     }
   
     .titulo h1,
     .titulo span {
-        font-size: 3rem;
-        text-align: center;
+      font-size: 3rem;
     }
   
     .bienvenida {
-        text-align: center;
-        padding: 0;
+      font-size: 1.1rem;
+      max-width: 450px;
     }
-  
-    .btn-conocenos {
-        align-self: center;
-    }
-  
   }
   
-  /* 📱 Móviles pequeños */
   @media (max-width: 600px) {
-    .main-header {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 8px 0;
-        height: auto;
-        gap: 6px;
-        backdrop-filter: blur(3px);
-    }
-  
-    .logo {
-        position: static;
-        margin: 0 auto;
-    }
-  
-    .logo img {
-        height: 45px;
-    }
-  
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        gap: 10px;
-    }
-  
-    .nav-item {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-    }
-  
-    .inicio-content {
-        flex-direction: column;
-        gap: 30px;
-        height: auto;
-        padding: 60px 0;
-    }
-  
-    .imagenes {
-        width: 200px;
-        height: 260px;
-    }
-  
-    .polaroid {
-        transform: scale(1);
-        padding: 12px;
-    }
-  
-    .polaroid.secundaria {
-        top: 25px;
-        left: 60px;
-        transform: rotate(5deg) scale(0.9);
-    }
-  
-    .inicio .titulo {
-        transform: translateX(5%);
-        margin-top: 10%;
-    }
-  
-    .titulo {
-        align-items: center;
-        text-align: center;
-        transform: none;
-    }
-  
     .titulo h1,
     .titulo span {
-        font-size: 2.4rem;
-        line-height: 1.1;
-        text-align: center;
+      font-size: 2.4rem;
+      line-height: 1.1;
     }
   
     .bienvenida {
-        font-size: 1rem;
-        max-width: 320px;
-        text-align: center;
-        padding: 0;
+      font-size: 1rem;
+      max-width: 320px;
     }
   
     .btn-conocenos {
-        align-self: center;
-        font-size: 1rem;
-        padding: 10px 22px;
+      font-size: 1rem;
+      padding: 10px 22px;
     }
   }
   
+  /* ======== CASO PANTALLAS MUY PEQUEÑAS ======== */
   @media (max-width: 1280px) and (max-height: 634px) {
-  
-    .polaroid,
-    .inicio .polaroid,
-    .imagenes,
-    .imagen-hero,
-    .galeria,
-    .fotos-inicio {
-        display: none !important;
-    }
-  
     .titulo {
-        transform: none !important;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
+      transform: none !important;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
   
     .titulo h1,
     .titulo span {
-        text-align: center;
+      text-align: center;
     }
   
     .bienvenida {
-        text-align: center;
-        padding: 0;
+      text-align: center;
     }
   
     .btn-conocenos {
-        margin: 25px auto 0 auto;
-        display: flex;
-        justify-content: center;
+      margin: 25px auto 0 auto;
+      display: flex;
+      justify-content: center;
     }
   }
+  
