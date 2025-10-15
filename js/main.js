@@ -1,37 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll('.nav-item, .btn-conocenos');
-
-  // Scroll suave con clic
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    });
-  });
-
   const scrollContainer = document.querySelector(".scroll-container");
   const sections = document.querySelectorAll(".section");
   let currentIndex = 0;
   let isScrolling = false;
 
+  /* 🔹 Scroll suave con clic */
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      currentIndex = Array.from(sections).indexOf(target);
+      scrollToSection(currentIndex);
+    });
+  });
+
+  /* 🔹 Función para moverse a una sección */
   const scrollToSection = (index) => {
     if (index < 0 || index >= sections.length) return;
     isScrolling = true;
-
     const targetSection = sections[index];
     scrollContainer.scrollTo({
       top: targetSection.offsetTop,
       behavior: "smooth",
     });
-
     setTimeout(() => (isScrolling = false), 900);
   };
 
+  /* 🔹 Scroll con rueda (entre secciones) */
   scrollContainer.addEventListener(
     "wheel",
     (e) => {
@@ -39,19 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isScrolling) return;
 
       const target = e.target.closest(".servicios-cards");
-
-      // ⚡ SI el scroll está dentro del contenedor interno
       if (target) {
         const atTop = target.scrollTop === 0;
         const atBottom = target.scrollTop + target.clientHeight >= target.scrollHeight - 1;
-
-        // Si NO estamos en los límites, dejamos que el scroll normal funcione
-        if (!(e.deltaY < 0 && atTop) && !(e.deltaY > 0 && atBottom)) {
-          return; // 🔹 permite scroll normal dentro de .servicios-cards
-        }
+        if (!(e.deltaY < 0 && atTop) && !(e.deltaY > 0 && atBottom)) return;
       }
 
-      // Si no hay contenedor interno o ya está en los límites → cambia de sección
       e.preventDefault();
 
       if (e.deltaY > 0) {
@@ -65,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // Navegación con flechas
+  /* 🔹 Navegación con flechas */
   document.addEventListener("keydown", (e) => {
     if (isScrolling) return;
     if (e.key === "ArrowDown") {
@@ -77,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Animación "Somos"
+  /* 🔹 Animación “Somos” */
   const sectionSomos = document.querySelector("#somos");
   if (sectionSomos) {
     const observer = new IntersectionObserver(
@@ -94,22 +86,42 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     observer.observe(sectionSomos);
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll(".nav-item");
-  const contactoSection = document.querySelector("#contacto");
+  /* 🔹 En Contacto: cambia color de todo el menú */
+  const allNavLinks = document.querySelectorAll('.nav-item');
+  const contactoSection = document.querySelector('#contacto');
+  if (contactoSection) {
+    const observerOptions = {
+      root: scrollContainer,
+      threshold: 0.5
+    };
 
-  window.addEventListener("scroll", () => {
-    const contactoTop = contactoSection.offsetTop;
-    const contactoHeight = contactoSection.offsetHeight;
-    const scrollPos = window.scrollY + window.innerHeight / 2;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        allNavLinks.forEach(link => {
+          if (entry.isIntersecting) {
+            link.classList.add('contacto-activo');
+          } else {
+            link.classList.remove('contacto-activo');
+          }
+        });
+      });
+    }, observerOptions);
 
-    // Si el scroll está dentro de la sección contacto
-    if (scrollPos >= contactoTop && scrollPos <= contactoTop + contactoHeight) {
-      document.querySelector('a[href="#contacto"]').classList.add("contacto-activo");
-    } else {
-      document.querySelector('a[href="#contacto"]').classList.remove("contacto-activo");
-    }
+    observer.observe(contactoSection);
+  }
+
+  /* 🔹 Bloquea zoom con Ctrl + scroll */
+  window.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+
+  /* 🧩 NUEVO: Recentrar sección al cambiar tamaño o zoom */
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      scrollToSection(currentIndex); // 🔸 Recentrar sección actual
+    }, 300);
   });
 });
