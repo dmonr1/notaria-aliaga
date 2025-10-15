@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll('.nav-item, .btn-conocenos');
 
-  // Scroll animado SOLO al hacer clic
+  // Scroll suave con clic
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -9,52 +9,49 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.getElementById(targetId);
 
       if (target) {
-        // Añadimos clase para efecto suave temporal
-        target.classList.add('scrolling-target');
-
-        // Desliza con animación suave
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-
-        // Quitamos la clase después de 1s (cuando termina el scroll)
-        setTimeout(() => target.classList.remove('scrolling-target'), 1000);
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
   });
-});
 
-
-document.addEventListener("DOMContentLoaded", () => {
   const scrollContainer = document.querySelector(".scroll-container");
   const sections = document.querySelectorAll(".section");
-
   let currentIndex = 0;
   let isScrolling = false;
 
-  // Función que centra una sección
   const scrollToSection = (index) => {
     if (index < 0 || index >= sections.length) return;
-
     isScrolling = true;
-    const targetSection = sections[index];
-    const scrollTop =
-      targetSection.offsetTop -
-      (scrollContainer.clientHeight - targetSection.offsetHeight) / 2;
 
+    const targetSection = sections[index];
     scrollContainer.scrollTo({
-      top: scrollTop,
+      top: targetSection.offsetTop,
       behavior: "smooth",
     });
 
-    setTimeout(() => (isScrolling = false), 900); 
+    setTimeout(() => (isScrolling = false), 900);
   };
 
   scrollContainer.addEventListener(
     "wheel",
     (e) => {
+      if (e.ctrlKey) return; // permite zoom
       if (isScrolling) return;
+
+      const target = e.target.closest(".servicios-cards");
+
+      // ⚡ SI el scroll está dentro del contenedor interno
+      if (target) {
+        const atTop = target.scrollTop === 0;
+        const atBottom = target.scrollTop + target.clientHeight >= target.scrollHeight - 1;
+
+        // Si NO estamos en los límites, dejamos que el scroll normal funcione
+        if (!(e.deltaY < 0 && atTop) && !(e.deltaY > 0 && atBottom)) {
+          return; // 🔹 permite scroll normal dentro de .servicios-cards
+        }
+      }
+
+      // Si no hay contenedor interno o ya está en los límites → cambia de sección
       e.preventDefault();
 
       if (e.deltaY > 0) {
@@ -68,9 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
+  // Navegación con flechas
   document.addEventListener("keydown", (e) => {
     if (isScrolling) return;
-
     if (e.key === "ArrowDown") {
       currentIndex = Math.min(currentIndex + 1, sections.length - 1);
       scrollToSection(currentIndex);
@@ -79,23 +76,40 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollToSection(currentIndex);
     }
   });
+
+  // Animación "Somos"
+  const sectionSomos = document.querySelector("#somos");
+  if (sectionSomos) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sectionSomos.classList.add("somos-animar");
+          } else {
+            sectionSomos.classList.remove("somos-animar");
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(sectionSomos);
+  }
 });
 
-const sectionSomos = document.querySelector("#somos");
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll(".nav-item");
+  const contactoSection = document.querySelector("#contacto");
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        sectionSomos.classList.add("somos-animar");
-      } else {
-        sectionSomos.classList.remove("somos-animar");
-      }
-    });
-  },
-  {
-    threshold: 0.4, 
-  }
-);
+  window.addEventListener("scroll", () => {
+    const contactoTop = contactoSection.offsetTop;
+    const contactoHeight = contactoSection.offsetHeight;
+    const scrollPos = window.scrollY + window.innerHeight / 2;
 
-if (sectionSomos) observer.observe(sectionSomos);
+    // Si el scroll está dentro de la sección contacto
+    if (scrollPos >= contactoTop && scrollPos <= contactoTop + contactoHeight) {
+      document.querySelector('a[href="#contacto"]').classList.add("contacto-activo");
+    } else {
+      document.querySelector('a[href="#contacto"]').classList.remove("contacto-activo");
+    }
+  });
+});
