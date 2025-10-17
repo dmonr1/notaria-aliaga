@@ -155,7 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
           titulo: "Prescripción adquisitiva de dominio",
-          resumen: "Reconocimiento legal de la propiedad de un inmueble tras su posesión continua y pública durante un periodo determinado."
+          resumen: `<strong>Requisitos:</strong><br>
+            1) Todos los documentos que acrediten posesión continua del inmueble por 10 años.<br>
+            2) Copia simple de documento de identidad del solicitante.<br>
+            3) Recibos pagados de luz, agua y teléfono de los últimos diez (10) años.<br>
+            4) Certificación municipal de la persona que figura en sus registros como propietaria o poseedora del bien o los originales de los recibos de autoavalúo pagados de los últimos diez (10) años que sustentan la ocupación del inmueble.<br>
+            5) Declaración testimonial de no menos de 3 ni más de 6 personas, mayores de 25 años de edad, preferentemente vecinos u ocupantes de los inmuebles colindantes del predio.`
         },
         {
           titulo: "Regularización de edificaciones en general",
@@ -174,11 +179,24 @@ document.addEventListener("DOMContentLoaded", () => {
       subtipos: [
         {
           titulo: "Viaje al Interior del país",
-          resumen: "Autorización notarial para que un menor viaje dentro del territorio nacional acompañado o sin sus padres."
+          resumen: string = `<strong>Requisitos:</strong><br>
+            1) Presencia de cualquiera de los padres.<br>
+            2) Completar los datos en la solicitud.<br>
+            3) DNI del padre solicitante y del acompañante (original y copia).<br>
+            4) DNI del menor y copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
+            5) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+            6) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
         },
         {
           titulo: "Viaje al Exterior",
-          resumen: "Documento notarial que permite a un menor viajar fuera del país con uno o ambos padres, o con un tercero autorizado."
+          resumen: `<strong>Requisitos:</strong><br>
+            1) Presencia de ambos padres.<br>
+            2) Completar los datos en la solicitud.<br>
+            3) DNI de ambos padres, vigentes y sin multas electorales.<br>
+            4) DNI del menor.<br>
+            5) Copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
+            6) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+            7) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
         }
       ]
     },
@@ -189,7 +207,14 @@ document.addEventListener("DOMContentLoaded", () => {
       subtipos: [
         {
           titulo: "Testamentos",
-          resumen: "Documento legal que especifica los deseos de una persona sobre sus bienes, herencia y el cuidado de sus hijos después de su muerte"
+          resumen: `<strong>Documentos:</strong><br>
+            1) Presencia de ambos padres.<br>
+            2) Completar los datos en la solicitud.<br>
+            3) DNI de ambos padres, vigentes y sin multas electorales.<br>
+            4) DNI del menor.<br>
+            5) Copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
+            6) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+            7) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
         },
       ]
     },
@@ -198,6 +223,16 @@ document.addEventListener("DOMContentLoaded", () => {
       img: "../images/servicios/garantia.jpg",
       descripcion: "Trámites notariales relacionados con la transferencia y formalización de vehículos.",
       subtipos: [
+        {
+          titulo: "Transferencia Vehicular",
+          resumen: `<strong>Requisitos:</strong><br>
+            1) DNI del vendedor y comprador (original y copia)<br>
+            2) Tarjeta de propiedad (original y copia).<br>
+            3) SOAT vigente.<br>
+            4) Si el auto es del año 2022 al 2025, traer pago del impuesto vehicular.<br>
+            5) Acreditar el medio de pago de manera bancarizada mediante un voucher o transferencia (Traerlo impreso) <br>
+            6) Boleta informativa (Registros públicos)`
+        },
         {
           titulo: "Cambio de características",
           resumen: "Trámite notarial que formaliza las modificaciones técnicas realizadas a un vehículo."
@@ -238,7 +273,17 @@ document.addEventListener("DOMContentLoaded", () => {
       subtipos: [
         {
           titulo: "Rectificación de partidas",
-          resumen: "Corrección de errores u omisiones en actas o partidas de nacimiento, matrimonio o defunción."
+          resumen: `<strong>Requisitos:</strong><br>
+            1) Comparecencia del solicitante, portando su D.N.I. o documento oficial de identidad en caso de extranjeros, adjuntando fotocopia de dichos documentos.<br>
+            2) En caso de actuar a través de apoderado, adjuntar certificado de vigencia de poder actualizado expedido por SUNARP, dicho certificado no podrá tener una antigüedad mayor a 30 días naturales.<br>
+            3) Adjuntar partida que se desea rectificar, precisando los errores u omisiones de la partida. No puede invocarse el trámite para cambio de prenombres o apellidos.<br>
+            4) Adjuntar partida de nacimiento (o de bautismo si ésta es anterior al 14 de noviembre de 1936) del padre o de la madre con los datos a rectificar.<br>
+            5) En algunos casos, adjuntar partida de bautizo.<br>
+	    <strong>Trámite:</strong>:<br>
+            6) Verificación biométrica de identidad de los solicitantes nacionales, o, según el caso, verificación de identidad con la base de datos de migraciones para los extranjeros.<br>
+            7) Elaboración y firma de minuta, autorizada por abogado. Minuta se hace en la Notaría. <br>
+            8) Publicación del procedimiento no contencioso.`
+
         },
         {
           titulo: "Sucesión intestada",
@@ -246,7 +291,15 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
           titulo: "Patrimonio familiar",
-          resumen: "Constitución de un patrimonio destinado a proteger la vivienda familiar."
+          resumen: `<strong>Requisitos:</strong>:<br>
+            1) Minuta firmada por los contratantes y autorizada por abogado.<br>
+            2) Copia de documento de identidad de los contratantes.<br>
+            3) Vigencia de poder original y actualizado, en caso se actué por representación.<br>
+            4) CRI o Copia Literal de la Partida Registral del inmueble, original y actualizada. (Este inmueble debe ser: <br>
+              <strong>La casa habitación de la familia, Un predio destinado a la agricultura, la artesanía, la industria o el comercio.</strong>)<br>
+            5) Certificado Negativo de Gravamen del inmueble.<br>
+            6) Formularios Municipales (PU y HR)  y recibo de pago del Impuesto Predial del año respectivo o Constancia de no Adeudo, emitida por la Municipalidad correspondiente, donde se consigne los datos exactos del inmueble.<br>
+            7) Partida de matrimonio y/o partida de nacimiento de los hijos, original y actualizado.`
         },
         {
           titulo: "Inventarios",
@@ -284,7 +337,16 @@ document.addEventListener("DOMContentLoaded", () => {
       subtipos: [
         {
           titulo: "Compraventa y/o adjudicación",
-          resumen: "Formalización notarial de la transferencia de propiedad de bienes inmuebles o muebles."
+          resumen: `<strong>Requisitos:</strong><br>
+            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
+            2) Copia Literal actualizada de la Partida registral del inmueble emitida por SUNARP.<br>
+            3) Copia de DNI de los otorgantes.<br>
+            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
+            5) Hojas HR y PU del autovalúo municipal de este año.<br>
+            6) Constancia de No Adeudo del Impuesto Predial de El Vendedor.<br>
+            7) Liquidación y pago del Impuesto a la Renta de El Vendedor, de corresponder. Liquidación y pago del Impuesto de Alcabala de El Comprador, de corresponder.<br>
+            8) Medio de pago bancario siempre que el valor de venta supere 01 U.I.T.<br>
+            <strong>*Consultar requisitos específicos en caso de Anticipo de Herencia y Donación.</strong>`
         },
         {
           titulo: "Hipoteca y Anticresis",
@@ -292,11 +354,25 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
           titulo: "Donación",
-          resumen: "Acto jurídico mediante el cual una persona transfiere gratuitamente la propiedad de un bien."
+          resumen: `<strong>Requisitos:</strong>:<br>
+            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
+            2) Copia Literal actualizada de la Partida.<br>
+            3) Copia de DNI de los otorgantes.<br>
+            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
+            5) Hojas HR y PU del autovalúo municipal de este año.<br>
+            6) Constancia de No Adeudo del Impuesto Predial de El DONANTE.<br>
+            7) Liquidación y pago del Impuesto de Alcabala de El Donatario, de corresponder.`
         },
         {
           titulo: "Anticipo de legítima",
-          resumen: "Adelanto de parte de la herencia a los herederos forzosos en vida del otorgante."
+          resumen: `<strong>Requisitos:</strong>:<br>
+            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
+            2) Copia Literal actualizada de la Partida.<br>
+            3) Copia de DNI de los otorgantes.<br>
+            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
+            5) Hojas HR y PU del autovalúo municipal de este año.<br>
+            6) Constancia de No Adeudo del Impuesto Predial de El ANTICIPANTE.<br>
+            7) Copia certificada de la partida de nacimiento del anticipado.`
         },
         {
           titulo: "Constitución de empresas o sociedades y sus modificaciones",
@@ -312,7 +388,16 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
           titulo: "Matrimonios",
-          resumen: "Acto civil que formaliza el vínculo matrimonial ante notario público conforme a ley."
+          resumen: `<strong>Requisitos:</strong><br>
+            1) Copia de DNI de los contrayentes y de sus testigos, vigentes y sin multas electorales.<br>
+            2) Copia certificada de Partida de nacimiento de los contrayentes (máx. 30 días de antigüedad).<br>
+            3) Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+            4) Certificado domiciliario de los contrayentes (máx. 30 días de antigüedad).<br>
+            5) Certificado médico de los contrayentes de no tener impedimento para contraer Matrimonio (máx. 30 días de antigüedad).<br>
+            6) Dos testigos mayores de edad, que no sean parientes con los contrayentes y que los conozcan por más de tres años.<br>
+            7) Declaración Jurada de los testigos manifestando que los contrayentes no tienen impedimento de contraer matrimonio.<br>
+            8) Certificado Negativo de Matrimonio expedido por RENIEC por cada contrayente (máx. 30 días de antigüedad).<br>
+            9) Certificado Negativo de Unión de Hecho expedido por SUNARP por cada contrayente (máx. 30 días de antigüedad).`
         },
         {
           titulo: "Contratos en general",
@@ -327,11 +412,23 @@ document.addEventListener("DOMContentLoaded", () => {
       subtipos: [
         {
           titulo: "Apertura de libros y actas",
-          resumen: "Legalización de los libros societarios o de actas para su uso formal."
+          resumen: `<strong>Requisitos:</strong>:<br>
+            1) Copia literal de la empresa o asociación.<br>
+            2) Ficha RUC de la empresa o asociación.<br>
+            3) Libro Anterior (en caso se tenga).<br>
+            4) Libro Nuevo.<br>
+            5) DNI del solicitante (físico y copia).`
+
         },
         {
           titulo: "Apertura de libros de contabilidad y otros",
-          resumen: "Autenticación notarial previa a la utilización de libros contables obligatorios."
+          resumen: `<strong>Requisitos:</strong>:<br>
+            1) Copia literal de la empresa o asociación.<br>
+            2) Ficha RUC de la empresa o asociación.<br>
+            3) Libro Anterior (en caso se tenga).<br>
+            4) Libro Nuevo.<br>
+            5) DNI del solicitante (físico y copia).`
+
         },
         {
           titulo: "Firmas",
