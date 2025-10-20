@@ -462,26 +462,7 @@ html {
     animation-delay: 0.5s;
 }
 
-@media (max-width: 900px) {
-    .somos-container {
-        flex-direction: column;
-        text-align: center;
-    }
 
-    .mision-vision {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .polaroid-somos {
-        margin-top: 20px;
-    }
-
-    .titulo-seccion {
-        font-size: 2.8rem;
-        margin-bottom: 12px;
-    }
-}
 
 .main-header.nav-azul {
     background: #0D3B66;
@@ -1206,81 +1187,101 @@ html {
     transform: rotate(90deg);
 }
 
-@media (max-width: 1280px) {
-    .main-header {
-        padding: 10px 25px;
-    }
-
-    .logo img {
-        height: 45px;
-    }
-
-    .nombre-notaria {
-        font-size: 1rem;
-    }
-
-    .lema {
-        font-size: 0.85rem;
-        max-width: 220px;
-    }
-
-    .titulo h1 {
-        font-size: 3.5rem;
-    }
-
-    .titulo span {
-        font-size: 6rem;
-    }
+/* === 📱 1. Smartphones pequeños (hasta 480px) === */
+/* === 📱 1. Smartphones pequeños (hasta 480px) === */
+@media (max-width: 480px) {
 
     .somos-container {
-        max-width: 90%;
-        gap: 50px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
     }
 
-    .descripcion {
-        font-size: 1.1rem;
+    .mision-vision {
+        flex-direction: column;
+        gap: 0px;
+        align-items: center;
     }
 
-    .servicio-card {
-        flex: 1 1 calc(33.33% - 20px);
-        height: auto;
-        padding: 25px 15px;
+    .polaroid-somos {
+        margin-top: 20px;
+        max-width: 320px;
     }
 
-    .contacto-superior {
-        padding: 80px 60px 40px;
-        gap: 40px;
+    .titulo-seccion {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+        margin-top: 15px;
     }
 
-    .footer-titulo {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 900px) {
+    /* === Header === */
     .main-header {
         flex-direction: column;
-        height: auto;
+        align-items: center;
         padding: 10px 0;
-        gap: 10px;
+        gap: 0px;
+    }
+
+    .mision h3, .vision h3 {
+        font-family: 'Anton', sans-serif;
+        font-size: 2rem;
+        color: #ffd700;
+        margin-bottom: 8px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.199);
+    }
+
+    .mision p, .vision p {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #f1f1f1;
+        line-height: 1.5;
     }
 
     .header-left {
         flex-direction: column;
+        align-items: center;
         gap: 5px;
     }
 
+    .nombre-notaria,
     .lema {
-        text-align: center;
-        font-size: 0.9rem;
+        display: none;
+    }
+
+    .logo img {
+        display: none;
     }
 
     .nav-links {
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 8px 20px;
+        width: 100%;
     }
 
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-item {
+        flex: 0 0 auto;
+        padding: 8px 10px;
+        white-space: nowrap;
+        font-size: 1rem;
+        text-decoration: none;
+    }
+
+    .scroll-container {
+        overflow-y: auto;
+        height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* === Inicio === */
     .inicio-content {
         flex-direction: column;
         gap: 25px;
@@ -1289,6 +1290,7 @@ html {
 
     .titulo {
         margin-right: 0;
+        margin-top: 50px;
     }
 
     .titulo h1 {
@@ -1299,30 +1301,72 @@ html {
         font-size: 4.8rem;
     }
 
-    .somos-container {
-        flex-direction: column;
-        gap: 30px;
+    .btn-conocenos {
+        margin-top: 25px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: #ffd700;
+        color: #000;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgb(235, 146, 12);
+        cursor: pointer;
+        transition: background 0.25s ease-out, box-shadow 0.25s ease-out, transform 0.25s ease-out;
+        will-change: transform;
+    }
+
+    .bienvenida {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #ffffff;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        max-width: 550px;
+        line-height: 1.5;
         text-align: center;
+        margin-top: 20px;
     }
 
-    .polaroid-somos {
-        max-width: 320px;
-    }
-
+    /* === Servicios === */
     .servicios {
         flex-direction: column;
-        padding: 80px 30px;
+        padding: 70px 30px;
         align-items: center;
+        position: relative;
+        height: 150vh;
+        /* importante para evitar que ::after flote */
     }
 
     .servicios-container {
+        
         flex-direction: column;
         align-items: center;
+        margin-top: 0px;
     }
 
     .servicios-info {
-        max-width: 100%;
+        position: relative;
+        background: #fff;
+        color: #102A43;
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 435px;
+        text-align: left;
+        height: auto;
+        margin-top: 20px;
         text-align: center;
+    }
+
+    .icono-servicios {
+        top: 25px;
+        right: 25px;
+        font-size: 25px;
+        color: #ff8309;
+        background: linear-gradient(135deg, #ffcc80, #ff9800);
     }
 
     .servicios-cards {
@@ -1334,16 +1378,102 @@ html {
         max-width: 100%;
     }
 
-    .contacto-superior {
-        padding: 60px 40px;
+    .servicios::after {
+        content: "";
+        position: absolute;
+        top: 95px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        box-shadow: none;
+        z-index: 1;
     }
 
-    .contacto-formulario,
-    .contacto-mapa {
-        flex: 1;
+    .contacto {
+        background: #e6eef7;
+        min-height: 277vh !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding-bottom: 0;
+        padding: 0px !important;
+    }
+
+    /* === Contacto === */
+    .contacto-superior {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        gap: 30px;
         width: 100%;
     }
 
+    .servicios-imagen-decorativa {
+        display: none;
+        /* 🔹 Ocultar imagen de mano para evitar superposición */
+    }
+
+    .servicios-info h2 {
+        font-size: 1.8rem;
+        color: #ffa800;
+        font-weight: 700;
+    }
+
+    .servicios-info h3 {
+        font-size: 1.2rem;
+        color: #ff8309;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .servicios-info p {
+        font-size: 0.8rem !important;
+        line-height: 1.6;
+    }
+
+
+    .contacto-formulario,
+    .contacto-mapa {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-card,
+    .mapa-card {
+        width: 90%;
+        max-width: 400px;
+        padding: 25px 20px;
+        border-radius: 16px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-card h2,
+    .mapa-card h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+
+    .btn-enviar {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .mapa-card iframe {
+        width: 100%;
+        height: 250px;
+        border-radius: 12px;
+    }
+
+    /* === Footer === */
     .contacto-footer {
         flex-direction: column;
         align-items: center;
@@ -1359,5 +1489,37 @@ html {
 
     .contacto-logo img {
         height: 100px;
+    }
+
+    /* === Somos === */
+    .somos-texto {
+        flex: 1;
+        margin-left: 0;
+        min-width: 300px;
+    }
+
+    .somos {
+        height: 130vh;
+        background: radial-gradient(circle at center, #4CAF50 0%, #1b5e20 100%);
+        color: #fff;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .somos-animar .somos-texto .descripcion {
+        margin-left: 0;
+        animation: slideInLeft 0.8s ease forwards;
+        animation-delay: 0.5s;
+    }
+
+    .descripcion {
+        max-width: 600px;
+        font-size: 0.9rem !important;
+        font-weight: 500;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        
     }
 }
