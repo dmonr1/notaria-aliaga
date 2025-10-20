@@ -321,13 +321,13 @@ html {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    max-width: 77%;
     width: 100%;
     gap: 100px;
 }
 
 .somos-texto {
     flex: 1;
+    margin-left: 80px;
     min-width: 300px;
 }
 
@@ -447,6 +447,7 @@ html {
 }
 
 .somos-animar .somos-texto .descripcion {
+    margin-left: 120px;
     animation: slideInLeft 0.8s ease forwards;
     animation-delay: 0.5s;
 }
