@@ -1257,7 +1257,6 @@ html {
     }
 }
 
-/* 📱 TABLETS Y CELULARES GRANDES (≤ 900px) */
 @media (max-width: 900px) {
     .main-header {
         flex-direction: column;
