@@ -694,7 +694,6 @@ html {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     box-sizing: border-box;
     padding-bottom: 0;
     padding: 0px !important;
