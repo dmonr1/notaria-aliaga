@@ -1335,7 +1335,6 @@ html {
     }
 
     .contacto-superior {
-        flex-direction: column;
         padding: 60px 40px;
     }
 
