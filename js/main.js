@@ -491,20 +491,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const menuIcon = document.getElementById("menu-icon");
-  const sidebar = document.getElementById("sidebar");
-  const cerrarSidebar = document.getElementById("cerrar-sidebar");
+const sidebar = document.getElementById("sidebar");
+const cerrarSidebar = document.getElementById("cerrar-sidebar");
 
-  menuIcon.addEventListener("click", () => {
-    sidebar.classList.add("activo");
-  });
+menuIcon.addEventListener("click", () => {
+  sidebar.classList.add("activo");
+});
 
-  cerrarSidebar.addEventListener("click", () => {
+cerrarSidebar.addEventListener("click", () => {
+  sidebar.classList.remove("activo");
+});
+
+document.querySelectorAll(".nav-item").forEach(link => {
+  link.addEventListener("click", () => {
     sidebar.classList.remove("activo");
   });
-
-  // Cierra el sidebar al hacer clic en un link
-  document.querySelectorAll(".nav-item").forEach(link => {
-    link.addEventListener("click", () => {
-      sidebar.classList.remove("activo");
-    });
-  });
+});
