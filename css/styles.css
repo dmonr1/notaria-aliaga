@@ -1187,14 +1187,13 @@ html {
     transform: rotate(90deg);
 }
 
-/* === 📱 1. Smartphones pequeños (hasta 480px) === */
-/* === 📱 1. Smartphones pequeños (hasta 480px) === */
 @media (max-width: 480px) {
 
     .somos-container {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 8px;
+        margin-top: 50px;
     }
 
     .mision-vision {
@@ -1204,14 +1203,15 @@ html {
     }
 
     .polaroid-somos {
-        margin-top: 20px;
-        max-width: 320px;
+        margin-top: 10px;
+        max-width: 240px;
+        padding: 10px;
     }
 
     .titulo-seccion {
         font-size: 2.5rem;
-        margin-bottom: 12px;
-        margin-top: 15px;
+        margin-bottom: 3px;
+        margin-top: 0px;
     }
 
     /* === Header === */
@@ -1222,16 +1222,18 @@ html {
         gap: 0px;
     }
 
-    .mision h3, .vision h3 {
+    .mision h3,
+    .vision h3 {
         font-family: 'Anton', sans-serif;
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #ffd700;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
         text-shadow: 0 3px 10px rgba(0, 0, 0, 0.199);
     }
 
-    .mision p, .vision p {
-        font-size: 0.9rem;
+    .mision p,
+    .vision p {
+        font-size: 0.85rem;
         font-weight: 500;
         color: #f1f1f1;
         line-height: 1.5;
@@ -1334,15 +1336,15 @@ html {
     /* === Servicios === */
     .servicios {
         flex-direction: column;
-        padding: 70px 30px;
+        padding: 30px;
         align-items: center;
         position: relative;
-        height: 150vh;
+        height: 100vh;
         /* importante para evitar que ::after flote */
     }
 
     .servicios-container {
-        
+        gap: 5px;
         flex-direction: column;
         align-items: center;
         margin-top: 0px;
@@ -1352,31 +1354,23 @@ html {
         position: relative;
         background: #fff;
         color: #102A43;
-        padding: 20px;
+        padding: 15px;
         border-radius: 20px;
-        max-width: 435px;
+        max-width: 307px;
         text-align: left;
         height: auto;
-        margin-top: 20px;
+        margin-top: 55px;
         text-align: center;
     }
 
     .icono-servicios {
         top: 25px;
         right: 25px;
-        font-size: 25px;
+        font-size: 22px;
         color: #ff8309;
-        background: linear-gradient(135deg, #ffcc80, #ff9800);
     }
 
-    .servicios-cards {
-        justify-content: center;
-    }
-
-    .servicio-card {
-        flex: 1 1 calc(50% - 20px);
-        max-width: 100%;
-    }
+    
 
     .servicios::after {
         content: "";
@@ -1388,6 +1382,95 @@ html {
         box-shadow: none;
         z-index: 1;
     }
+
+    .servicio-imagen {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .servicios-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 10px;
+        margin-left: 10px;
+        overflow-x: auto; 
+        overflow-y: hidden;
+      }
+    
+      .servicio-card {
+        flex-direction: row; /* 🔹 Horizontal */
+        align-items: center;
+        justify-content: flex-start;
+        width: 96%;
+        max-width: 380px;
+        height: 95px;
+        padding: 15px 12px;
+        text-align: left;
+        gap: 10px;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+    
+      .servicio-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      }
+    
+      .servicio-imagen {
+        width: 65px;
+        height: 65px;
+        margin: 0;
+        border-radius: 50%;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+    
+      .servicio-imagen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    
+      /* 🔹 Texto (título y descripción) */
+      .servicio-card h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+        color: #0D3B66;
+        white-space: nowrap;        /* 🔹 evita saltos de línea */
+        overflow: hidden;           /* 🔹 oculta texto extra */
+        text-overflow: ellipsis;    /* 🔹 agrega los "..." */
+        max-width: 180px;           /* 🔹 ajusta según el ancho disponible */
+      }
+    
+      .servicio-card p {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0;
+      }
+    
+      /* 🔹 Icono (botón verde) */
+      .servicio-icono {
+        width: 32px;
+        height: 32px;
+        background: #3dbf31;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto; /* 🔹 lo empuja a la derecha */
+        flex-shrink: 0;
+      }
+    
+      .servicio-icono i {
+        font-size: 0.9rem;
+      }
 
     .contacto {
         background: #e6eef7;
@@ -1416,21 +1499,21 @@ html {
     }
 
     .servicios-info h2 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         color: #ffa800;
         font-weight: 700;
     }
 
     .servicios-info h3 {
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: #ff8309;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         font-weight: 600;
     }
 
     .servicios-info p {
         font-size: 0.8rem !important;
-        line-height: 1.6;
+        line-height: 1.5;
     }
 
 
@@ -1499,7 +1582,7 @@ html {
     }
 
     .somos {
-        height: 130vh;
+        height: 100vh;
         background: radial-gradient(circle at center, #4CAF50 0%, #1b5e20 100%);
         color: #fff;
         padding: 20px 30px;
@@ -1520,6 +1603,13 @@ html {
         font-weight: 500;
         line-height: 1.6;
         margin-bottom: 10px;
-        
+    }
+
+    .btn-whatsapp {
+        bottom: 23px;
+        right: 23px;
+        font-size: 20px;
+        width: 45px;
+        height: 45px;
     }
 }
