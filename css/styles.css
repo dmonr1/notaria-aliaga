@@ -1336,7 +1336,7 @@ html {
     }
 
     .servicios-container {
-        gap: 5px;
+        gap: 10px;
         flex-direction: column;
         align-items: center;
         margin-top: 0px;
@@ -1351,7 +1351,7 @@ html {
         max-width: 320px;
         text-align: left;
         height: auto;
-        margin-top: 55px;
+        margin-top: 0px;
         text-align: center;
     }
 
@@ -1361,8 +1361,6 @@ html {
         font-size: 22px;
         color: #ff8309;
     }
-
-
 
     .servicios::after {
         content: "";
@@ -1398,8 +1396,6 @@ html {
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        max-width: 380px;
-        height: 149.03px;
         padding: 15px 12px;
         text-align: left;
         gap: 10px;
@@ -1415,8 +1411,8 @@ html {
     }
 
     .servicio-imagen {
-        width: 65px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
         margin: 0;
         border-radius: 50%;
         flex-shrink: 0;
@@ -1485,19 +1481,16 @@ html {
 
     .contacto {
         position: relative;
-        height: 210vh;
+        height: 199vh;
     }
 
     .contacto-superior {
         flex-direction: column;
         align-items: center;
-        padding: 30px 20px;
+        padding: 0px 20px 30px 20px;
         gap: 25px;
     }
 
-    .contacto-formulario {
-        margin-top: 20px;
-    }
 
     .contacto-formulario,
     .contacto-mapa {
@@ -1511,10 +1504,6 @@ html {
         border-radius: 12px;
     }
 
-    .form-card {
-        margin-top: 40px;
-
-    }
 
     .form-card h2,
     .mapa-card h2 {
@@ -1645,7 +1634,6 @@ html {
         line-height: 1.4;
       }
     
-      /* contenedor de texto junto a la imagen */
       .modal-izquierda .texto-info {
         flex: 1;
         display: flex;
