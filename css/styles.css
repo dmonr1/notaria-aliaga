@@ -678,7 +678,7 @@ html {
     flex-direction: column;
     box-sizing: border-box;
     padding-bottom: 0;
-    padding: 0px !important;
+    padding: 0px;
 }
 
 .contacto-superior {
@@ -1370,7 +1370,7 @@ html {
         color: #ff8309;
     }
 
-    
+
 
     .servicios::after {
         content: "";
@@ -1397,12 +1397,12 @@ html {
         align-items: center;
         gap: 18px;
         padding: 10px;
-        overflow-x: auto; 
+        overflow-x: auto;
         overflow-y: hidden;
-      }
-    
-      .servicio-card {
-        flex-direction: row; 
+    }
+
+    .servicio-card {
+        flex-direction: row;
         align-items: center;
         justify-content: flex-start;
         width: 100%;
@@ -1413,49 +1413,53 @@ html {
         gap: 10px;
         border-radius: 14px;
         background: #fff;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-    
-      .servicio-card:hover {
+    }
+
+    .servicio-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-      }
-    
-      .servicio-imagen {
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .servicio-imagen {
         width: 65px;
         height: 65px;
         margin: 0;
         border-radius: 50%;
         flex-shrink: 0;
         overflow: hidden;
-      }
-    
-      .servicio-imagen img {
+    }
+
+    .servicio-imagen img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
-    
-      /* 🔹 Texto (título y descripción) */
-      .servicio-card h4 {
+    }
+
+    /* 🔹 Texto (título y descripción) */
+    .servicio-card h4 {
         font-size: 1rem;
         margin-bottom: 6px;
         color: #0D3B66;
-        white-space: nowrap;        /* 🔹 evita saltos de línea */
-        overflow: hidden;           /* 🔹 oculta texto extra */
-        text-overflow: ellipsis;    /* 🔹 agrega los "..." */
-        max-width: 180px;           /* 🔹 ajusta según el ancho disponible */
-      }
-    
-      .servicio-card p {
+        white-space: nowrap;
+        /* 🔹 evita saltos de línea */
+        overflow: hidden;
+        /* 🔹 oculta texto extra */
+        text-overflow: ellipsis;
+        /* 🔹 agrega los "..." */
+        max-width: 180px;
+        /* 🔹 ajusta según el ancho disponible */
+    }
+
+    .servicio-card p {
         font-size: 0.9rem;
         color: #555;
         margin-bottom: 0;
-      }
-    
-      /* 🔹 Icono (botón verde) */
-      .servicio-icono {
+    }
+
+    /* 🔹 Icono (botón verde) */
+    .servicio-icono {
         width: 32px;
         height: 32px;
         background: #3dbf31;
@@ -1463,33 +1467,13 @@ html {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: auto; /* 🔹 lo empuja a la derecha */
+        margin-left: auto;
+        /* 🔹 lo empuja a la derecha */
         flex-shrink: 0;
-      }
-    
-      .servicio-icono i {
-        font-size: 0.9rem;
-      }
-
-    .contacto {
-        background: #e6eef7;
-        min-height: 277vh !important;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        padding-bottom: 0;
-        padding: 0px !important;
     }
 
-    /* === Contacto === */
-    .contacto-superior {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 20px;
-        gap: 30px;
-        width: 100%;
+    .servicio-icono i {
+        font-size: 0.9rem;
     }
 
     .servicios-imagen-decorativa {
@@ -1498,7 +1482,7 @@ html {
     }
 
     .servicios-info h2 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         color: #ffa800;
         font-weight: 700;
     }
@@ -1516,52 +1500,68 @@ html {
     }
 
 
+
+    /* Evita que contacto se superponga con la sección anterior */
+    .contacto {
+        position: relative;
+        height: 220vh;
+    }
+
+    .contacto-superior {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 20px;
+        gap: 25px;
+    }
+
+    .contacto-formulario {
+        margin-top: 45px;
+    }
+
     .contacto-formulario,
     .contacto-mapa {
         width: 100%;
-        display: flex;
-        justify-content: center;
+        max-width: 400px;
     }
 
     .form-card,
     .mapa-card {
-        width: 90%;
-        max-width: 400px;
-        padding: 25px 20px;
-        border-radius: 16px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    .form-card h2,
-    .mapa-card h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        font-size: 0.95rem;
-        padding: 10px 12px;
-    }
-
-    .btn-enviar {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-
-    .mapa-card iframe {
-        width: 100%;
-        height: 250px;
+        padding: 18px;
         border-radius: 12px;
     }
 
-    /* === Footer === */
+    .form-card {
+        margin-top: 40px;
+
+    }
+
+
+    .form-card h2,
+    .mapa-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-card input,
+    .form-card textarea {
+        font-size: 0.85rem;
+        padding: 6px 8px;
+    }
+
+    .btn-enviar {
+        font-size: 0.85rem;
+        padding: 5px 14px;
+    }
+
+    .mapa-card iframe {
+        height: 180px;
+    }
+
     .contacto-footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 25px;
-        padding: 40px 30px;
+        gap: 10px;
+        padding: 30px 30px 10px 30px;
     }
 
     .footer-izquierda {
@@ -1570,7 +1570,27 @@ html {
     }
 
     .contacto-logo img {
-        height: 100px;
+        height: 85px;
+    }
+
+    .contacto-info p {
+        font-size: 0.9rem;
+    }
+
+    .footer-titulo {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 15px;
+        margin-top: -15px;
+        letter-spacing: 1px;
+    }
+
+    .info-icono {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
     }
 
     /* === Somos === */
