@@ -462,8 +462,6 @@ html {
     animation-delay: 0.5s;
 }
 
-
-
 .main-header.nav-azul {
     background: #0D3B66;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -547,7 +545,6 @@ html {
     font-size: 1rem;
     line-height: 1.6;
 }
-
 
 .servicios-cards {
     flex: 2;
@@ -1177,7 +1174,6 @@ html {
     word-wrap: break-word;
 }
 
-
 .subtipo-item.activo .subtipo-resumen {
     max-height: 350px;
     padding: 12px 16px 16px;
@@ -1214,7 +1210,6 @@ html {
         margin-top: 0px;
     }
 
-    /* === Header === */
     .main-header {
         flex-direction: column;
         align-items: center;
@@ -1283,7 +1278,6 @@ html {
         overflow-x: hidden;
     }
 
-    /* === Inicio === */
     .inicio-content {
         flex-direction: column;
         gap: 25px;
@@ -1333,14 +1327,12 @@ html {
         margin-top: 20px;
     }
 
-    /* === Servicios === */
     .servicios {
         flex-direction: column;
         padding: 30px;
         align-items: center;
         position: relative;
         height: 100vh;
-        /* importante para evitar que ::after flote */
     }
 
     .servicios-container {
@@ -1437,19 +1429,14 @@ html {
         object-fit: cover;
     }
 
-    /* 🔹 Texto (título y descripción) */
     .servicio-card h4 {
         font-size: 1rem;
         margin-bottom: 6px;
         color: #0D3B66;
         white-space: nowrap;
-        /* 🔹 evita saltos de línea */
         overflow: hidden;
-        /* 🔹 oculta texto extra */
         text-overflow: ellipsis;
-        /* 🔹 agrega los "..." */
         max-width: 180px;
-        /* 🔹 ajusta según el ancho disponible */
     }
 
     .servicio-card p {
@@ -1458,7 +1445,6 @@ html {
         margin-bottom: 0;
     }
 
-    /* 🔹 Icono (botón verde) */
     .servicio-icono {
         width: 32px;
         height: 32px;
@@ -1468,7 +1454,6 @@ html {
         align-items: center;
         justify-content: center;
         margin-left: auto;
-        /* 🔹 lo empuja a la derecha */
         flex-shrink: 0;
     }
 
@@ -1478,7 +1463,6 @@ html {
 
     .servicios-imagen-decorativa {
         display: none;
-        /* 🔹 Ocultar imagen de mano para evitar superposición */
     }
 
     .servicios-info h2 {
@@ -1499,12 +1483,9 @@ html {
         line-height: 1.5;
     }
 
-
-
-    /* Evita que contacto se superponga con la sección anterior */
     .contacto {
         position: relative;
-        height: 220vh;
+        height: 218vh;
     }
 
     .contacto-superior {
@@ -1515,7 +1496,7 @@ html {
     }
 
     .contacto-formulario {
-        margin-top: 45px;
+        margin-top: 20px;
     }
 
     .contacto-formulario,
@@ -1534,7 +1515,6 @@ html {
         margin-top: 40px;
 
     }
-
 
     .form-card h2,
     .mapa-card h2 {
@@ -1593,7 +1573,6 @@ html {
         font-size: 1.3rem;
     }
 
-    /* === Somos === */
     .somos-texto {
         flex: 1;
         margin-left: 0;
