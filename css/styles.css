@@ -69,9 +69,10 @@ html {
     height: 70px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
-    z-index: 100;
+    z-index: 1000;
 }
 
+/* Logo + nombre */
 .header-left {
     display: flex;
     align-items: center;
@@ -97,9 +98,13 @@ html {
     letter-spacing: 1.2px;
     text-transform: uppercase;
     margin: 0;
-    margin-top: -6px;
 }
 
+.lema {
+    display: none;
+}
+
+/* Nav normal */
 .nav-links {
     display: flex;
     gap: 25px;
@@ -120,15 +125,6 @@ html {
 .nav-item:hover,
 .nav-item.active {
     color: #ffd700;
-}
-
-.lema {
-    font-size: 0.95rem;
-    color: #f8f8f8;
-    text-align: right;
-    font-weight: 600;
-    max-width: 300px;
-    line-height: 1.2;
 }
 
 .inicio-content {
@@ -1183,6 +1179,14 @@ html {
     transform: rotate(90deg);
 }
 
+.menu-icon {
+    display: none;
+}
+
+.cerrar-sidebar {
+    display: none;
+}
+
 @media (max-width: 480px) {
 
     .somos-container {
@@ -1211,10 +1215,102 @@ html {
     }
 
     .main-header {
-        flex-direction: column;
+        display: flex;
         align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        gap: 10px;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 1rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 1;
+        gap: 8px;
+    }
+
+    .nombre-notaria {
+        font-size: 0.9rem;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .lema {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #f8f8f8;
+        font-weight: 600;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+/* ===== Sidebar ===== */
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px; /* cambia de left → right */
+    height: 100vh;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px;
+    gap: 20px;
+    transition: right 0.4s ease; /* cambia transición */
+    z-index: 2000;
+  }
+  
+  #sidebar.activo {
+    right: 0; /* aparece desde la derecha */
+  }
+  
+
+    .nav-item {
+        color: #fff;
+        font-size: 1.1rem;
+        width: 100%;
+        text-decoration: none;
         padding: 10px 0;
-        gap: 0px;
+        transition: color 0.3s;
+    }
+
+    .nav-item:hover {
+        color: #ffd700;
+    }
+
+    .cerrar-sidebar {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        font-size: 22px;
+        color: #fff;
+        cursor: pointer;
     }
 
     .mision h3,
@@ -1234,43 +1330,6 @@ html {
         line-height: 1.5;
     }
 
-    .header-left {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .nombre-notaria,
-    .lema {
-        display: none;
-    }
-
-    .logo img {
-        display: none;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        justify-content: flex-start;
-        gap: 20px;
-        padding: 8px 20px;
-        width: 100%;
-    }
-
-    .nav-links::-webkit-scrollbar {
-        display: none;
-    }
-
-    .nav-item {
-        flex: 0 0 auto;
-        padding: 8px 10px;
-        white-space: nowrap;
-        font-size: 1rem;
-        text-decoration: none;
-    }
 
     .scroll-container {
         overflow-y: auto;
@@ -1606,61 +1665,61 @@ html {
         height: 80%;
         max-width: none;
         overflow-y: auto;
-      }
-    
-      .modal-izquierda {
+    }
+
+    .modal-izquierda {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
         padding: 20px;
         background: #f4f7fb;
         gap: 15px;
-      }
-    
-      .modal-izquierda img {
+    }
+
+    .modal-izquierda img {
         width: 35%;
         height: auto;
         margin: 0;
         border-radius: 8px;
-      }
-    
-      .modal-izquierda h3 {
+    }
+
+    .modal-izquierda h3 {
         font-size: 1rem;
         margin: 0 0 5px 0;
-      }
-    
-      .modal-izquierda p {
+    }
+
+    .modal-izquierda p {
         font-size: 0.9rem;
         line-height: 1.4;
-      }
-    
-      .modal-izquierda .texto-info {
+    }
+
+    .modal-izquierda .texto-info {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: left;
-      }
-    
-      .modal-derecha {
+    }
+
+    .modal-derecha {
         flex: none;
         width: 100%;
         padding: 20px;
         overflow-y: auto;
-      }
-    
-      .modal-derecha h4 {
+    }
+
+    .modal-derecha h4 {
         text-align: center;
         font-size: 1rem;
-      }
-    
-      .modal-derecha li {
+    }
+
+    .modal-derecha li {
         font-size: 0.9rem;
-      }
-    
-      .modal-cerrar {
+    }
+
+    .modal-cerrar {
         top: 10px;
         right: 10px;
         font-size: 20px;
-      }
+    }
 }
