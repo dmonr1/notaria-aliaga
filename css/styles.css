@@ -1408,7 +1408,7 @@ html {
         justify-content: flex-start;
         width: 96%;
         max-width: 380px;
-        height: 95px;
+        height: auto;
         padding: 15px 12px;
         text-align: left;
         gap: 10px;
