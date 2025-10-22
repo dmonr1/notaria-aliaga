@@ -1,17 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ======== SCROLL ENTRE SECCIONES ========
   const links = document.querySelectorAll('.nav-item, .btn-conocenos');
   const scrollContainer = document.querySelector(".scroll-container");
   const sections = document.querySelectorAll(".section");
   let currentIndex = 0;
   let isScrolling = false;
 
+  // --- Navegación por clic ---
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href').substring(1);
       const target = document.getElementById(targetId);
       if (!target) return;
-
       currentIndex = Array.from(sections).indexOf(target);
       scrollToSection(currentIndex);
     });
@@ -28,96 +29,74 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (isScrolling = false), 900);
   };
 
-  scrollContainer.addEventListener(
-    "wheel",
-    (e) => {
-      if (e.ctrlKey) return;
-      if (isScrolling) return;
 
-      const target = e.target.closest(".servicios-cards");
-      if (target) {
-        const atTop = target.scrollTop === 0;
-        const atBottom = target.scrollTop + target.clientHeight >= target.scrollHeight - 1;
-        if (!(e.deltaY < 0 && atTop) && !(e.deltaY > 0 && atBottom)) return;
-      }
-
-      e.preventDefault();
-
-      if (e.deltaY > 0) {
-        currentIndex = Math.min(currentIndex + 1, sections.length - 1);
-      } else if (e.deltaY < 0) {
-        currentIndex = Math.max(currentIndex - 1, 0);
-      }
-
-      scrollToSection(currentIndex);
-    },
-    { passive: false }
-  );
-
+  
+  // --- Navegación con flechas ---
   document.addEventListener("keydown", (e) => {
     if (isScrolling) return;
-    if (e.key === "ArrowDown") {
-      currentIndex = Math.min(currentIndex + 1, sections.length - 1);
-      scrollToSection(currentIndex);
-    } else if (e.key === "ArrowUp") {
-      currentIndex = Math.max(currentIndex - 1, 0);
-      scrollToSection(currentIndex);
-    }
+    if (e.key === "ArrowDown") scrollToSection(++currentIndex);
+    if (e.key === "ArrowUp") scrollToSection(--currentIndex);
   });
 
+  // ======== ANIMACIÓN SECCIÓN SOMOS ========
   const sectionSomos = document.querySelector("#somos");
   if (sectionSomos) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            sectionSomos.classList.add("somos-animar");
-          } else {
-            sectionSomos.classList.remove("somos-animar");
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        sectionSomos.classList.toggle("somos-animar", entry.isIntersecting);
+      });
+    }, { threshold: 0.4 });
     observer.observe(sectionSomos);
   }
 
-  const allNavLinks = document.querySelectorAll('.nav-item');
+  // ======== ACTIVAR NAV ITEM CONTACTO ========
   const contactoSection = document.querySelector('#contacto');
+  const allNavLinks = document.querySelectorAll('.nav-item');
   if (contactoSection) {
-    const observerOptions = {
-      root: scrollContainer,
-      threshold: 0.5
-    };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         allNavLinks.forEach(link => {
-          if (entry.isIntersecting) {
-            link.classList.add('contacto-activo');
-          } else {
-            link.classList.remove('contacto-activo');
-          }
+          link.classList.toggle('contacto-activo', entry.isIntersecting);
         });
       });
-    }, observerOptions);
-
+    }, { root: scrollContainer, threshold: 0.5 });
     observer.observe(contactoSection);
   }
 
-  window.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) e.preventDefault();
-  }, { passive: false });
+  const carruselContenedor = document.querySelector(".carrusel-contenedor");
+  const indicadores = document.querySelectorAll(".indicador");
+  const total = indicadores.length;
+  let indice = 0;
+  let intervalo;
 
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      scrollToSection(currentIndex);
-    }, 300);
+  function mostrarImagen(n) {
+    indice = (n + total) % total;
+    carruselContenedor.style.transform = `translateX(-${indice * 100}%)`;
+
+    indicadores.forEach((el, i) =>
+      el.classList.toggle("activo", i === indice)
+    );
+  }
+
+  // Cambio automático cada 5 segundos
+  function iniciarAutoSlide() {
+    intervalo = setInterval(() => {
+      mostrarImagen(indice + 1);
+    }, 5000);
+  }
+
+  // Al hacer clic en los indicadores
+  indicadores.forEach((el, i) => {
+    el.addEventListener("click", () => {
+      mostrarImagen(i);
+      clearInterval(intervalo);
+      iniciarAutoSlide();
+    });
   });
-});
-document.addEventListener("DOMContentLoaded", () => {
+
+  iniciarAutoSlide();
+
+  // ======== MODAL SERVICIOS ========
   const modal = document.getElementById("modal-servicio");
   const cerrarModal = document.getElementById("cerrar-modal");
   const modalImg = document.getElementById("modal-imagen");
@@ -487,23 +466,26 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.addEventListener("click", e => {
     if (e.target === modal) modal.classList.remove("activo");
   });
-});
+  // ======== SIDEBAR ========
+  const menuIcon = document.getElementById("menu-icon");
+  const sidebar = document.getElementById("sidebar");
+  const cerrarSidebar = document.getElementById("cerrar-sidebar");
 
+  menuIcon.addEventListener("click", () => sidebar.classList.add("activo"));
+  cerrarSidebar.addEventListener("click", () => sidebar.classList.remove("activo"));
+  document.querySelectorAll(".nav-item").forEach(link =>
+    link.addEventListener("click", () => sidebar.classList.remove("activo"))
+  );
 
-const menuIcon = document.getElementById("menu-icon");
-const sidebar = document.getElementById("sidebar");
-const cerrarSidebar = document.getElementById("cerrar-sidebar");
+  // ======== OCULTAR HEADER DESPUÉS DEL INICIO ========
+  const header = document.querySelector(".main-header");
+  const inicioSection = document.querySelector("#inicio");
+  const scrollContainerEl = document.querySelector(".scroll-container");
 
-menuIcon.addEventListener("click", () => {
-  sidebar.classList.add("activo");
-});
-
-cerrarSidebar.addEventListener("click", () => {
-  sidebar.classList.remove("activo");
-});
-
-document.querySelectorAll(".nav-item").forEach(link => {
-  link.addEventListener("click", () => {
-    sidebar.classList.remove("activo");
+  scrollContainerEl.addEventListener("scroll", () => {
+    const rect = inicioSection.getBoundingClientRect();
+    const headerShouldHide = rect.bottom <= 50;
+    header.classList.toggle("oculto", headerShouldHide);
   });
+
 });
