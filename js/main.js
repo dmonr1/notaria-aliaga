@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ======== SCROLL ENTRE SECCIONES ========
   const links = document.querySelectorAll('.nav-item, .btn-conocenos');
   const scrollContainer = document.querySelector(".scroll-container");
   const sections = document.querySelectorAll(".section");
   let currentIndex = 0;
   let isScrolling = false;
 
-  // --- Navegación por clic ---
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -30,15 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
 
-  
-  // --- Navegación con flechas ---
   document.addEventListener("keydown", (e) => {
     if (isScrolling) return;
     if (e.key === "ArrowDown") scrollToSection(++currentIndex);
     if (e.key === "ArrowUp") scrollToSection(--currentIndex);
   });
 
-  // ======== ANIMACIÓN SECCIÓN SOMOS ========
   const sectionSomos = document.querySelector("#somos");
   if (sectionSomos) {
     const observer = new IntersectionObserver((entries) => {
@@ -49,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(sectionSomos);
   }
 
-  // ======== ACTIVAR NAV ITEM CONTACTO ========
   const contactoSection = document.querySelector('#contacto');
   const allNavLinks = document.querySelectorAll('.nav-item');
   if (contactoSection) {
@@ -78,14 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Cambio automático cada 5 segundos
   function iniciarAutoSlide() {
     intervalo = setInterval(() => {
       mostrarImagen(indice + 1);
     }, 5000);
   }
 
-  // Al hacer clic en los indicadores
   indicadores.forEach((el, i) => {
     el.addEventListener("click", () => {
       mostrarImagen(i);
@@ -96,377 +88,283 @@ document.addEventListener("DOMContentLoaded", () => {
 
   iniciarAutoSlide();
 
-  // ======== MODAL SERVICIOS ========
   const modal = document.getElementById("modal-servicio");
   const cerrarModal = document.getElementById("cerrar-modal");
   const modalImg = document.getElementById("modal-imagen");
   const modalTitulo = document.getElementById("modal-titulo");
   const modalDesc = document.getElementById("modal-descripcion");
-  const modalSubtipos = document.getElementById("modal-subtipos");
 
   const servicios = {
-    "Cartas Notariales": {
-      img: "../images/servicios/cartanotarial.jpg",
-      descripcion: "Redacción y legalización de cartas notariales y documentos oficiales.",
-      subtipos: [
-        {
-          titulo: "Otros",
-          resumen: "Redacción y legalización de documentos adicionales relacionados con comunicaciones formales."
-        },
-        {
-          titulo: "Sorteo entrega de premios",
-          resumen: "Supervisión y legalización de sorteos o concursos garantizando la transparencia del proceso."
-        },
-        {
-          titulo: "Licitaciones, Asambleas, juntas de accionistas, etc.",
-          resumen: "Autenticación y certificación de actos corporativos y administrativos conforme a ley."
-        }
-      ]
+    "Autorización de viaje de menor": {
+      img: "../images/servicios/viajes.jpg",
+      descripcion: `
+      <strong>REQUISITOS (VIAJE AL INTERIOR)</strong><br>
+      1. Presencia de cualquiera de los padres.<br>
+      2. Completar los datos en la solicitud.<br>
+      3. DNI del padre solicitante y del acompañante (original y copia).<br>
+      4. DNI del menor y copia certificada de la Partida de nacimiento (máx. 30 días).<br>
+      5. Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+      6. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).<br><br>
+      <strong>REQUISITOS (VIAJE AL EXTERIOR)</strong><br>
+      1. Presencia de ambos padres.<br>
+      2. Completar los datos en la solicitud.<br>
+      3. DNI de ambos padres, vigentes y sin multas electorales.<br>
+      4. DNI del menor.<br>
+      5. Copia certificada de la Partida de nacimiento (máx. 30 días).<br>
+      6. Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
+      7. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).<br><br>
+    `
     },
 
-    "Ley N°27157": {
-      img: "../images/servicios/inmueble.jpg",
-      descripcion: "Supervisión y certificación de trámites relacionados con la formalización de inmuebles.",
-      subtipos: [
-        {
-          titulo: "Inmatriculación de inmuebles",
-          resumen: "Registro de propiedades no inscritas en Registros Públicos, otorgando validez legal al inmueble."
-        },
-        {
-          titulo: "Prescripción adquisitiva de dominio",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) Todos los documentos que acrediten posesión continua del inmueble por 10 años.<br>
-            2) Copia simple de documento de identidad del solicitante.<br>
-            3) Recibos pagados de luz, agua y teléfono de los últimos diez (10) años.<br>
-            4) Certificación municipal de la persona que figura en sus registros como propietaria o poseedora del bien o los originales de los recibos de autoavalúo pagados de los últimos diez (10) años que sustentan la ocupación del inmueble.<br>
-            5) Declaración testimonial de no menos de 3 ni más de 6 personas, mayores de 25 años de edad, preferentemente vecinos u ocupantes de los inmuebles colindantes del predio.`
-        },
-        {
-          titulo: "Regularización de edificaciones en general",
-          resumen: "Formalización de construcciones realizadas sin licencia o con modificaciones no declaradas."
-        },
-        {
-          titulo: "Declaraciones de Fábrica",
-          resumen: "Registro notarial de edificaciones existentes que otorga reconocimiento legal ante Registros Públicos."
-        }
-      ]
-    },
-
-    "Autorización de viajes de menores de edad": {
+    "Testamento": {
       img: "../images/servicios/testamento.jpg",
-      descripcion: "Gestión de permisos y autorizaciones notariales para viajes de menores de edad.",
-      subtipos: [
-        {
-          titulo: "Viaje al Interior del país",
-          resumen: string = `<strong>Requisitos:</strong><br>
-            1) Presencia de cualquiera de los padres.<br>
-            2) Completar los datos en la solicitud.<br>
-            3) DNI del padre solicitante y del acompañante (original y copia).<br>
-            4) DNI del menor y copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
-            5) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-            6) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
-        },
-        {
-          titulo: "Viaje al Exterior",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) Presencia de ambos padres.<br>
-            2) Completar los datos en la solicitud.<br>
-            3) DNI de ambos padres, vigentes y sin multas electorales.<br>
-            4) DNI del menor.<br>
-            5) Copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
-            6) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-            7) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
-        }
-      ]
+      descripcion: `
+      <strong>DOCUMENTOS:</strong><br>
+      1. Dos testigos mayores de edad, no familiares ni esposos entre sí.<br>
+      2. Copia de DNI del testador y de los dos testigos, vigentes y sin multas.<br>
+      3. Copia literal actualizada de la Partida registral de sus inmuebles.<br>
+      4. Boleta informativa actualizada de los vehículos.<br>
+      5. Idealmente copia de DNI de sus herederos o datos completos.<br>
+      6. La notaría puede solicitar documentos adicionales.<br><br>
+    `
     },
 
-    "Testamentos": {
-      img: "../images/servicios/cartanotarial.jpg",
-      descripcion: "Redacción y formalización de testamentos conforme a ley, asegurando la voluntad del testador.",
-      subtipos: [
-        {
-          titulo: "Testamentos",
-          resumen: `<strong>Documentos:</strong><br>
-            1) Presencia de ambos padres.<br>
-            2) Completar los datos en la solicitud.<br>
-            3) DNI de ambos padres, vigentes y sin multas electorales.<br>
-            4) DNI del menor.<br>
-            5) Copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).<br>
-            6) Si la Partida de nacimiento es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-            7) Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días de antigüedad).`
-        },
-      ]
+    "Matrimonio": {
+      img: "../images/servicios/matrimonio.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Copia de DNI de contrayentes y testigos, vigentes y sin multas.<br>
+      2. Copia certificada de Partida de nacimiento (máx. 30 días).<br>
+      3. Si es emitida en provincias, debe estar visada por RENIEC.<br>
+      4. Certificado domiciliario (máx. 30 días).<br>
+      5. Certificado médico de no impedimento para casarse.<br>
+      6. Dos testigos mayores de edad (no parientes).<br>
+      7. Declaración jurada de los testigos.<br>
+      8. Certificados negativos de matrimonio y unión de hecho (RENIEC y SUNARP).<br><br>
+    `
     },
 
-    "Transferencias Vehiculares": {
-      img: "../images/servicios/garantia.jpg",
-      descripcion: "Trámites notariales relacionados con la transferencia y formalización de vehículos.",
-      subtipos: [
-        {
-          titulo: "Transferencia Vehicular",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) DNI del vendedor y comprador (original y copia)<br>
-            2) Tarjeta de propiedad (original y copia).<br>
-            3) SOAT vigente.<br>
-            4) Si el auto es del año 2022 al 2025, traer pago del impuesto vehicular.<br>
-            5) Acreditar el medio de pago de manera bancarizada mediante un voucher o transferencia (Traerlo impreso) <br>
-            6) Boleta informativa (Registros públicos)`
-        },
-        {
-          titulo: "Cambio de características",
-          resumen: "Trámite notarial que formaliza las modificaciones técnicas realizadas a un vehículo."
-        },
-        {
-          titulo: "Garantías Mobiliarias",
-          resumen: "Constitución o levantamiento de garantías sobre bienes muebles como respaldo de obligaciones."
-        },
-        {
-          titulo: "Inscripciones y levantamientos",
-          resumen: "Registro o eliminación de cargas o gravámenes sobre vehículos en Registros Públicos."
-        }
-      ]
-    },
-
-    "Poderes": {
+    "Compraventa": {
       img: "../images/servicios/tramites.jpeg",
-      descripcion: "Otorgamiento de poderes notariales para diferentes trámites personales o institucionales.",
-      subtipos: [
-        {
-          titulo: "Trámites ante Telefónica del Perú S.A.C.",
-          resumen: "Poder para realizar gestiones o representaciones ante la empresa Telefónica del Perú S.A.C."
-        },
-        {
-          titulo: "Trámites en la O.N.P.",
-          resumen: "Autorización notarial para actuar en nombre de otra persona ante la Oficina de Normalización Previsional."
-        },
-        {
-          titulo: "Trámites en ESSALUD",
-          resumen: "Otorgamiento de poderes para realizar gestiones médicas o administrativas ante ESSALUD."
-        }
-      ]
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
+      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
+      3. Copia de DNI de los otorgantes.<br>
+      4. Vigencia de poder actualizada si hay apoderado.<br>
+      5. Hojas HR y PU del autovalúo municipal.<br>
+      6. Constancia de No Adeudo del Impuesto Predial del vendedor.<br>
+      7. Liquidación y pago de impuestos (Renta y Alcabala) si corresponde.<br>
+      8. Medio de pago bancario si el valor supera 1 UIT.<br><br>
+    `
     },
 
-    "Asuntos No contenciosos": {
+    "Separación de Patrimonio": {
+      img: "../images/servicios/separacion.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Elaboración de minuta firmada por abogado y ambos cónyuges.<br>
+      2. Copia de DNI de ambos cónyuges.<br>
+      3. Con bienes: Tarjeta de propiedad.<br>
+      4. Sin bienes: solo los documentos anteriores.<br><br>
+    `
+    },
+
+    "Divorcio": {
+      img: "../images/servicios/divorico.jpeg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Solicitud firmada por ambos cónyuges o apoderado.<br>
+      2. Copia de documento de identidad de los intervinientes.<br>
+      3. Vigencia de poder actualizado si aplica.<br>
+      4. Copia certificada de la partida de matrimonio.<br>
+      5. Declaración jurada del último domicilio conyugal.<br>
+      6. Si hay hijos menores: partidas de nacimiento y acta de conciliación o sentencia.<br>
+      7. Si hay hijos mayores con incapacidad: partidas de nacimiento.<br><br>
+    `
+    },
+
+    "Patrimonio Familiar": {
+      img: "../images/servicios/inmueble.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Minuta firmada por los contratantes y autorizada por abogado.<br>
+      2. Copia de documento de identidad de los contratantes.<br>
+      3. Vigencia de poder actualizado si aplica.<br>
+      4. CRI o copia literal de la Partida Registral.<br>
+      5. Certificado Negativo de Gravamen.<br>
+      6. Formularios municipales (PU y HR) y recibo de pago del impuesto predial.<br>
+      7. Partida de matrimonio y/o nacimiento de hijos.<br><br>
+    `
+    },
+
+    "Reconocimiento de Unión de Hecho": {
+      img: "../images/servicios/union.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Minuta firmada por ambas partes y autorizada por abogado.<br>
+      2. Reconocimiento expreso de convivencia ≥ 2 años.<br>
+      3. Declaración de no impedimento matrimonial.<br>
+      4. Declaración jurada de domicilio.<br>
+      5. Certificado negativo de unión de hecho (SUNARP).<br>
+      6. Declaración de dos testigos (no familiares).<br>
+      7. Documentos que acrediten convivencia ≥ 2 años.<br><br>
+    `
+    },
+
+    "Rectificación de Partidas": {
       img: "../images/servicios/rectificacion.jpg",
-      descripcion: "Procesos notariales sin conflicto entre partes, realizados con celeridad y seguridad jurídica.",
-      subtipos: [
-        {
-          titulo: "Rectificación de partidas",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) Comparecencia del solicitante, portando su D.N.I. o documento oficial de identidad en caso de extranjeros, adjuntando fotocopia de dichos documentos.<br>
-            2) En caso de actuar a través de apoderado, adjuntar certificado de vigencia de poder actualizado expedido por SUNARP, dicho certificado no podrá tener una antigüedad mayor a 30 días naturales.<br>
-            3) Adjuntar partida que se desea rectificar, precisando los errores u omisiones de la partida. No puede invocarse el trámite para cambio de prenombres o apellidos.<br>
-            4) Adjuntar partida de nacimiento (o de bautismo si ésta es anterior al 14 de noviembre de 1936) del padre o de la madre con los datos a rectificar.<br>
-            5) En algunos casos, adjuntar partida de bautizo.<br>
-	    <strong>Trámite:</strong>:<br>
-            6) Verificación biométrica de identidad de los solicitantes nacionales, o, según el caso, verificación de identidad con la base de datos de migraciones para los extranjeros.<br>
-            7) Elaboración y firma de minuta, autorizada por abogado. Minuta se hace en la Notaría. <br>
-            8) Publicación del procedimiento no contencioso.`
-
-        },
-        {
-          titulo: "Sucesión intestada",
-          resumen: "Declaración notarial de herederos legales cuando una persona fallece sin testamento."
-        },
-        {
-          titulo: "Patrimonio familiar",
-          resumen: `<strong>Requisitos:</strong>:<br>
-            1) Minuta firmada por los contratantes y autorizada por abogado.<br>
-            2) Copia de documento de identidad de los contratantes.<br>
-            3) Vigencia de poder original y actualizado, en caso se actué por representación.<br>
-            4) CRI o Copia Literal de la Partida Registral del inmueble, original y actualizada. (Este inmueble debe ser: <br>
-              <strong>La casa habitación de la familia, Un predio destinado a la agricultura, la artesanía, la industria o el comercio.</strong>)<br>
-            5) Certificado Negativo de Gravamen del inmueble.<br>
-            6) Formularios Municipales (PU y HR)  y recibo de pago del Impuesto Predial del año respectivo o Constancia de no Adeudo, emitida por la Municipalidad correspondiente, donde se consigne los datos exactos del inmueble.<br>
-            7) Partida de matrimonio y/o partida de nacimiento de los hijos, original y actualizado.`
-        },
-        {
-          titulo: "Inventarios",
-          resumen: "Formalización notarial de la relación de bienes pertenecientes a una persona o sucesión."
-        },
-        {
-          titulo: "Adopción de personas capaces",
-          resumen: "Trámite notarial mediante el cual se adopta a una persona mayor de edad conforme a ley."
-        },
-        {
-          titulo: "Comprobación de testamentos",
-          resumen: "Verificación notarial de la existencia y validez de un testamento cerrado o abierto."
-        }
-      ]
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Comparecencia del solicitante con DNI.<br>
+      2. Certificado de vigencia de poder actualizado si aplica.<br>
+      3. Adjuntar partida a rectificar.<br>
+      4. Adjuntar partida de nacimiento o bautismo si aplica.<br>
+      5. Verificación biométrica de identidad.<br>
+      6. Elaboración y firma de minuta.<br>
+      7. Publicación del procedimiento no contencioso.<br><br>
+    `
     },
 
-    "Certificados Notariales": {
-      img: "../images/servicios/domiciliario.jpeg",
-      descripcion: "Emisión de certificados notariales que acreditan hechos o situaciones jurídicas con valor legal.",
-      subtipos: [
-        {
-          titulo: "Certificado de Supervivencia",
-          resumen: "Documento que acredita que una persona se encuentra con vida a la fecha de su expedición."
-        },
-        {
-          titulo: "Certificado Domiciliario",
-          resumen: "Certificación del domicilio real de una persona, verificado mediante declaración o visita domiciliaria."
-        }
-      ]
-    },
-
-    "Escrituras Públicas": {
+    "Constitución de Personas Jurídicas": {
       img: "../images/servicios/constitucion.jpg",
-      descripcion: "Formalización de actos y contratos ante notario, otorgando fe pública y validez jurídica.",
-      subtipos: [
-        {
-          titulo: "Compraventa y/o adjudicación",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
-            2) Copia Literal actualizada de la Partida registral del inmueble emitida por SUNARP.<br>
-            3) Copia de DNI de los otorgantes.<br>
-            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
-            5) Hojas HR y PU del autovalúo municipal de este año.<br>
-            6) Constancia de No Adeudo del Impuesto Predial de El Vendedor.<br>
-            7) Liquidación y pago del Impuesto a la Renta de El Vendedor, de corresponder. Liquidación y pago del Impuesto de Alcabala de El Comprador, de corresponder.<br>
-            8) Medio de pago bancario siempre que el valor de venta supere 01 U.I.T.<br>
-            <strong>*Consultar requisitos específicos en caso de Anticipo de Herencia y Donación.</strong>`
-        },
-        {
-          titulo: "Hipoteca y Anticresis",
-          resumen: "Constitución de derechos reales de garantía sobre bienes inmuebles."
-        },
-        {
-          titulo: "Donación",
-          resumen: `<strong>Requisitos:</strong>:<br>
-            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
-            2) Copia Literal actualizada de la Partida.<br>
-            3) Copia de DNI de los otorgantes.<br>
-            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
-            5) Hojas HR y PU del autovalúo municipal de este año.<br>
-            6) Constancia de No Adeudo del Impuesto Predial de El DONANTE.<br>
-            7) Liquidación y pago del Impuesto de Alcabala de El Donatario, de corresponder.`
-        },
-        {
-          titulo: "Anticipo de legítima",
-          resumen: `<strong>Requisitos:</strong>:<br>
-            1) Minuta firmada por los otorgantes y autorizada por un abogado.<br>
-            2) Copia Literal actualizada de la Partida.<br>
-            3) Copia de DNI de los otorgantes.<br>
-            4) Si alguna parte actúa mediante un apoderado, este debe presentar Vigencia de poder actualizada, emitida por SUNARP.<br>
-            5) Hojas HR y PU del autovalúo municipal de este año.<br>
-            6) Constancia de No Adeudo del Impuesto Predial de El ANTICIPANTE.<br>
-            7) Copia certificada de la partida de nacimiento del anticipado.`
-        },
-        {
-          titulo: "Constitución de empresas o sociedades y sus modificaciones",
-          resumen: "Formalización de la creación o modificación de empresas ante notario."
-        },
-        {
-          titulo: "Constitución de asociaciones",
-          resumen: "Registro de entidades sin fines de lucro con reconocimiento legal y estatutos propios."
-        },
-        {
-          titulo: "Poder",
-          resumen: "Escritura mediante la cual se otorga representación legal o administrativa a otra persona."
-        },
-        {
-          titulo: "Matrimonios",
-          resumen: `<strong>Requisitos:</strong><br>
-            1) Copia de DNI de los contrayentes y de sus testigos, vigentes y sin multas electorales.<br>
-            2) Copia certificada de Partida de nacimiento de los contrayentes (máx. 30 días de antigüedad).<br>
-            3) Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-            4) Certificado domiciliario de los contrayentes (máx. 30 días de antigüedad).<br>
-            5) Certificado médico de los contrayentes de no tener impedimento para contraer Matrimonio (máx. 30 días de antigüedad).<br>
-            6) Dos testigos mayores de edad, que no sean parientes con los contrayentes y que los conozcan por más de tres años.<br>
-            7) Declaración Jurada de los testigos manifestando que los contrayentes no tienen impedimento de contraer matrimonio.<br>
-            8) Certificado Negativo de Matrimonio expedido por RENIEC por cada contrayente (máx. 30 días de antigüedad).<br>
-            9) Certificado Negativo de Unión de Hecho expedido por SUNARP por cada contrayente (máx. 30 días de antigüedad).`
-        },
-        {
-          titulo: "Contratos en general",
-          resumen: "Formalización de acuerdos privados con validez pública mediante escritura notarial."
-        }
-      ]
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Reserva de nombre expedida por Registros Públicos.<br>
+      2. Copia de documento de identidad de los contratantes.<br>
+      3. Bien inmueble: copia literal + formularios municipales + pagos de impuestos.<br>
+      4. Bien mueble: informe de valorización con marca, modelo y número de serie.<br>
+      5. Dinero: depósito bancario original a favor de la empresa.<br><br>
+    `
     },
 
-    "Legalizaciones": {
+    "Prescripción Adquisitiva de Inmueble": {
+      img: "../images/servicios/garantia.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Documentos que acrediten posesión continua ≥ 10 años.<br>
+      2. Copia simple del DNI del solicitante.<br>
+      3. Recibos de luz, agua y teléfono últimos 10 años.<br>
+      4. Certificación municipal o recibos de autoavalúo.<br>
+      5. Declaración testimonial de 3-6 personas mayores de 25 años.<br><br>
+    `
+    },
+
+    "Transferencia Vehicular": {
+      img: "../images/servicios/trasnferencia.jpg",
+      descripcion: `
+      REQUISITOS:<br>
+      1. DNI del vendedor y comprador (original y copia).<br>
+      2. Tarjeta de propiedad (original y copia).<br>
+      3. SOAT vigente.<br>
+      4. Pago del impuesto vehicular si auto 2022-2025.<br>
+      5. Medio de pago bancarizado (voucher o transferencia).<br>
+      6. Boleta informativa (Registros Públicos).<br><br>
+    `
+    },
+
+    "Donación": {
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
+      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
+      3. Copia de DNI de los otorgantes.<br>
+      4. Vigencia de poder actualizada si aplica.<br>
+      5. Hojas HR y PU del autovalúo municipal del año.<br>
+      6. Constancia de No Adeudo del Impuesto Predial del donante.<br>
+      7. Liquidación y pago del Impuesto de Alcabala del donatario.<br><br>
+    `
+    },
+
+    "Anticipo de Legítima": {
+      img: "../images/servicios/anticipo.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
+      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
+      3. Copia de DNI de los otorgantes.<br>
+      4. Vigencia de poder actualizada si aplica.<br>
+      5. Hojas HR y PU del autovalúo municipal del año.<br>
+      6. Constancia de No Adeudo del Impuesto Predial del anticipante.<br>
+      7. Copia certificada de la partida de nacimiento del anticipado.<br><br>
+    `
+    },
+
+    "Poder por Escritura Pública": {
+      img: "../images/servicios/domiciliario.jpeg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. DNI del poder dante.<br>
+      2. DNI del apoderado.<br>
+      3. Copia literal o partida registral (Máx. 30 días de antigüedad).
+    `
+    },
+
+    "Apertura de Libros": {
+      img: "../images/servicios/apertura_libros.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Copia literal de la empresa o asociación.<br>
+      2. Ficha RUC de la empresa o asociación.<br>
+      3. Libro Anterior (en caso se tenga).<br>
+      4. Libro Nuevo.<br>
+      5. DNI del solicitante (físico y copia).
+
+    `
+    },
+
+    "Copias Certificadas": {
       img: "../images/servicios/certificaciones.jpg",
-      descripcion: "Autenticación notarial de documentos y firmas para darles validez oficial.",
-      subtipos: [
-        {
-          titulo: "Apertura de libros y actas",
-          resumen: `<strong>Requisitos:</strong>:<br>
-            1) Copia literal de la empresa o asociación.<br>
-            2) Ficha RUC de la empresa o asociación.<br>
-            3) Libro Anterior (en caso se tenga).<br>
-            4) Libro Nuevo.<br>
-            5) DNI del solicitante (físico y copia).`
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Copia literal actual.<br>
+      2. Libro aperturado.<br>
+      3. Copia del libro.<br>
+      4. Constancias de convocatoria y/o QUORUM debidamente redactadas.<br>
+      5. Ficha RUC.
+    `
+    },
 
-        },
-        {
-          titulo: "Apertura de libros de contabilidad y otros",
-          resumen: `<strong>Requisitos:</strong>:<br>
-            1) Copia literal de la empresa o asociación.<br>
-            2) Ficha RUC de la empresa o asociación.<br>
-            3) Libro Anterior (en caso se tenga).<br>
-            4) Libro Nuevo.<br>
-            5) DNI del solicitante (físico y copia).`
-
-        },
-        {
-          titulo: "Firmas",
-          resumen: "Certificación de autenticidad de la firma de una persona en un documento."
-        },
-        {
-          titulo: "Copias y reproducciones",
-          resumen: "Legalización de copias fieles de documentos originales con validez oficial."
-        },
-        {
-          titulo: "Certificaciones",
-          resumen: "Constancia notarial que certifica hechos, documentos o situaciones verificadas."
-        }
-      ]
-    }
+    "Cambio de E.I.R.L a S.A.C": {
+      img: "../images/servicios/cambio.jpg",
+      descripcion: `
+      <strong>REQUISITOS:</strong><br>
+      1. Copia del documento de identidad del titular y su cónyuge (DNI, carné de extranjería) en el caso de ser casado, así como de los nuevos socios.<br>
+      2. Copia del documento de identidad de el/los socios/s ingresante/s y su/s cónyuge/s (DNI, carné de extranjería) Libro de actas de decisión de titular eril.<br>
+      3. Ficha ruc.<br>
+      4. Copia literal completa de la partida registral de la empresa.<br>
+      5. Copia simple del testimonio de constitución y modificaciones.<br>
+      6. Balance general suscrito por contador público colegiado al día anterior de la expedición de la escritura pública.<br>
+      7. Monto y forma de aporte de los nuevos socios (certificado de depósito – informe de valorización - otros).<br>
+      8. PUBLICACIÓNES EN DIARIOS: 3 veces con intervalo de 5 días. Luego de 30 días se expedirá la escritura pública. <br>
+      9. Minuta suscrita por abogado y por la persona autorizada en acta.<br>
+      10. Acta de decisión de titular donde decide transformar la empresa de EIRL a S.A.C inserta en el libro de actas.
+    `
+    },
   };
 
-  document.querySelectorAll(".servicio-card").forEach(card => {
-    card.querySelector(".servicio-icono").addEventListener("click", () => {
-      const titulo = card.querySelector("h4").innerText;
-      const data = servicios[titulo];
+  document.querySelectorAll(".servicio-mini button").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".servicio-mini");
+      const titulo = card.querySelector("h4").innerText.trim();
+
+      const data = servicios[titulo] || null;
 
       modal.classList.add("activo");
       modalImg.src = data?.img || card.querySelector("img").src;
       modalTitulo.textContent = titulo;
-      modalDesc.textContent = data?.descripcion || card.querySelector("p").innerText;
-
-      if (data && data.subtipos && data.subtipos.length) {
-        modalSubtipos.innerHTML = data.subtipos
-          .map(
-            s => `
-            <li class="subtipo-item">
-              <div class="subtipo-titulo">
-                <span>${s.titulo}</span>
-                <i class="fa-solid fa-chevron-right"></i>
-              </div>
-              <div class="subtipo-resumen">${s.resumen || "Próximamente..."}</div>
-            </li>`
-          )
-          .join("");
-
-        modalSubtipos.querySelectorAll(".subtipo-titulo").forEach(tituloEl => {
-          tituloEl.addEventListener("click", () => {
-            const item = tituloEl.parentElement;
-            item.classList.toggle("activo");
-          });
-        });
-      } else {
-        modalSubtipos.innerHTML = "<li>Información próximamente</li>";
-      }
+      modalDesc.innerHTML = data?.descripcion || "Información próximamente disponible.";
     });
   });
 
   cerrarModal.addEventListener("click", () => modal.classList.remove("activo"));
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.classList.remove("activo");
+  });
 
   modal.addEventListener("click", e => {
     if (e.target === modal) modal.classList.remove("activo");
   });
-  // ======== SIDEBAR ========
   const menuIcon = document.getElementById("menu-icon");
   const sidebar = document.getElementById("sidebar");
   const cerrarSidebar = document.getElementById("cerrar-sidebar");
@@ -477,7 +375,6 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", () => sidebar.classList.remove("activo"))
   );
 
-  // ======== OCULTAR HEADER DESPUÉS DEL INICIO ========
   const header = document.querySelector(".main-header");
   const inicioSection = document.querySelector("#inicio");
   const scrollContainerEl = document.querySelector(".scroll-container");
@@ -489,3 +386,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+const inputBuscar = document.getElementById("buscarServicio");
+const serviciosCards = document.querySelectorAll(".servicio-mini");
+
+inputBuscar.addEventListener("input", () => {
+  const texto = inputBuscar.value.toLowerCase().trim();
+  serviciosCards.forEach(card => {
+    const titulo = card.querySelector("h4").textContent.toLowerCase();
+    card.style.display = titulo.includes(texto) ? "flex" : "none";
+  });
+});
+
+const btnSubir = document.getElementById("btn-subir");
+const scrollContainerBtn = document.querySelector(".scroll-container");
+const seccionInicio = document.getElementById("inicio");
+
+if (btnSubir && scrollContainerBtn && seccionInicio) {
+  scrollContainerBtn.addEventListener("scroll", () => {
+    const scrollTop = scrollContainerBtn.scrollTop;
+    const limite = seccionInicio.offsetHeight * 0.7;
+
+    if (scrollTop > limite) {
+      btnSubir.classList.add("mostrar");
+    } else {
+      btnSubir.classList.remove("mostrar");
+    }
+  });
+
+  btnSubir.addEventListener("click", () => {
+    scrollContainerBtn.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
