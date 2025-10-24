@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (isScrolling = false), 900);
   };
 
-
   document.addEventListener("keydown", (e) => {
     if (isScrolling) return;
     if (e.key === "ArrowDown") scrollToSection(++currentIndex);
@@ -112,8 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. DNI del menor.<br>
       5. Copia certificada de la Partida de nacimiento (máx. 30 días).<br>
       6. Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-      7. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).<br><br>
-    `
+      7. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).`
     },
 
     "Testamento": {
@@ -125,8 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
       3. Copia literal actualizada de la Partida registral de sus inmuebles.<br>
       4. Boleta informativa actualizada de los vehículos.<br>
       5. Idealmente copia de DNI de sus herederos o datos completos.<br>
-      6. La notaría puede solicitar documentos adicionales.<br><br>
-    `
+      6. La notaría puede solicitar documentos adicionales.`
     },
 
     "Matrimonio": {
@@ -140,8 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       5. Certificado médico de no impedimento para casarse.<br>
       6. Dos testigos mayores de edad (no parientes).<br>
       7. Declaración jurada de los testigos.<br>
-      8. Certificados negativos de matrimonio y unión de hecho (RENIEC y SUNARP).<br><br>
-    `
+      8. Certificados negativos de matrimonio y unión de hecho (RENIEC y SUNARP).`
     },
 
     "Compraventa": {
@@ -155,8 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       5. Hojas HR y PU del autovalúo municipal.<br>
       6. Constancia de No Adeudo del Impuesto Predial del vendedor.<br>
       7. Liquidación y pago de impuestos (Renta y Alcabala) si corresponde.<br>
-      8. Medio de pago bancario si el valor supera 1 UIT.<br><br>
-    `
+      8. Medio de pago bancario si el valor supera 1 UIT.`
     },
 
     "Separación de Patrimonio": {
@@ -166,8 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
       1. Elaboración de minuta firmada por abogado y ambos cónyuges.<br>
       2. Copia de DNI de ambos cónyuges.<br>
       3. Con bienes: Tarjeta de propiedad.<br>
-      4. Sin bienes: solo los documentos anteriores.<br><br>
-    `
+      4. Sin bienes: solo los documentos anteriores.`
     },
 
     "Divorcio": {
@@ -180,8 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. Copia certificada de la partida de matrimonio.<br>
       5. Declaración jurada del último domicilio conyugal.<br>
       6. Si hay hijos menores: partidas de nacimiento y acta de conciliación o sentencia.<br>
-      7. Si hay hijos mayores con incapacidad: partidas de nacimiento.<br><br>
-    `
+      7. Si hay hijos mayores con incapacidad: partidas de nacimiento.`
     },
 
     "Patrimonio Familiar": {
@@ -194,8 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. CRI o copia literal de la Partida Registral.<br>
       5. Certificado Negativo de Gravamen.<br>
       6. Formularios municipales (PU y HR) y recibo de pago del impuesto predial.<br>
-      7. Partida de matrimonio y/o nacimiento de hijos.<br><br>
-    `
+      7. Partida de matrimonio y/o nacimiento de hijos.`
     },
 
     "Reconocimiento de Unión de Hecho": {
@@ -208,8 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. Declaración jurada de domicilio.<br>
       5. Certificado negativo de unión de hecho (SUNARP).<br>
       6. Declaración de dos testigos (no familiares).<br>
-      7. Documentos que acrediten convivencia ≥ 2 años.<br><br>
-    `
+      7. Documentos que acrediten convivencia ≥ 2 años.`
     },
 
     "Rectificación de Partidas": {
@@ -222,8 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. Adjuntar partida de nacimiento o bautismo si aplica.<br>
       5. Verificación biométrica de identidad.<br>
       6. Elaboración y firma de minuta.<br>
-      7. Publicación del procedimiento no contencioso.<br><br>
-    `
+      7. Publicación del procedimiento no contencioso.`
     },
 
     "Constitución de Personas Jurídicas": {
@@ -234,8 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
       2. Copia de documento de identidad de los contratantes.<br>
       3. Bien inmueble: copia literal + formularios municipales + pagos de impuestos.<br>
       4. Bien mueble: informe de valorización con marca, modelo y número de serie.<br>
-      5. Dinero: depósito bancario original a favor de la empresa.<br><br>
-    `
+      5. Dinero: depósito bancario original a favor de la empresa.`
     },
 
     "Prescripción Adquisitiva de Inmueble": {
@@ -246,8 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       2. Copia simple del DNI del solicitante.<br>
       3. Recibos de luz, agua y teléfono últimos 10 años.<br>
       4. Certificación municipal o recibos de autoavalúo.<br>
-      5. Declaración testimonial de 3-6 personas mayores de 25 años.<br><br>
-    `
+      5. Declaración testimonial de 3-6 personas mayores de 25 años.`
     },
 
     "Transferencia Vehicular": {
@@ -259,8 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
       3. SOAT vigente.<br>
       4. Pago del impuesto vehicular si auto 2022-2025.<br>
       5. Medio de pago bancarizado (voucher o transferencia).<br>
-      6. Boleta informativa (Registros Públicos).<br><br>
-    `
+      6. Boleta informativa (Registros Públicos).`
     },
 
     "Donación": {
@@ -272,8 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. Vigencia de poder actualizada si aplica.<br>
       5. Hojas HR y PU del autovalúo municipal del año.<br>
       6. Constancia de No Adeudo del Impuesto Predial del donante.<br>
-      7. Liquidación y pago del Impuesto de Alcabala del donatario.<br><br>
-    `
+      7. Liquidación y pago del Impuesto de Alcabala del donatario.`
     },
 
     "Anticipo de Legítima": {
@@ -286,8 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
       4. Vigencia de poder actualizada si aplica.<br>
       5. Hojas HR y PU del autovalúo municipal del año.<br>
       6. Constancia de No Adeudo del Impuesto Predial del anticipante.<br>
-      7. Copia certificada de la partida de nacimiento del anticipado.<br><br>
-    `
+      7. Copia certificada de la partida de nacimiento del anticipado.`
     },
 
     "Poder por Escritura Pública": {
@@ -296,8 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <strong>REQUISITOS:</strong><br>
       1. DNI del poder dante.<br>
       2. DNI del apoderado.<br>
-      3. Copia literal o partida registral (Máx. 30 días de antigüedad).
-    `
+      3. Copia literal o partida registral (Máx. 30 días de antigüedad).`
     },
 
     "Apertura de Libros": {
@@ -308,9 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
       2. Ficha RUC de la empresa o asociación.<br>
       3. Libro Anterior (en caso se tenga).<br>
       4. Libro Nuevo.<br>
-      5. DNI del solicitante (físico y copia).
-
-    `
+      5. DNI del solicitante (físico y copia).`
     },
 
     "Copias Certificadas": {
@@ -321,8 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
       2. Libro aperturado.<br>
       3. Copia del libro.<br>
       4. Constancias de convocatoria y/o QUORUM debidamente redactadas.<br>
-      5. Ficha RUC.
-    `
+      5. Ficha RUC.`
     },
 
     "Cambio de E.I.R.L a S.A.C": {
@@ -338,8 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
       7. Monto y forma de aporte de los nuevos socios (certificado de depósito – informe de valorización - otros).<br>
       8. PUBLICACIÓNES EN DIARIOS: 3 veces con intervalo de 5 días. Luego de 30 días se expedirá la escritura pública. <br>
       9. Minuta suscrita por abogado y por la persona autorizada en acta.<br>
-      10. Acta de decisión de titular donde decide transformar la empresa de EIRL a S.A.C inserta en el libro de actas.
-    `
+      10. Acta de decisión de titular donde decide transformar la empresa de EIRL a S.A.C inserta en el libro de actas.`
     },
   };
 
@@ -422,59 +402,58 @@ if (btnSubir && scrollContainerBtn && seccionInicio) {
   });
 }
 
-
 const contadores = document.querySelectorAll(".separador-flotante-verde .numero");
-  let animado = false;
+let animado = false;
 
-  const animarContadores = () => {
-    contadores.forEach(contador => {
-      const texto = contador.textContent.trim();
-      const valorFinal = parseInt(texto.replace(/\D/g, "")); // elimina "+" o texto
-      let valorActual = 0;
-      const duracion = 1200; // milisegundos
-      const intervalo = 20; // ms por frame
-      const incremento = valorFinal / (duracion / intervalo);
+const animarContadores = () => {
+  contadores.forEach(contador => {
+    const texto = contador.textContent.trim();
+    const valorFinal = parseInt(texto.replace(/\D/g, ""));
+    let valorActual = 0;
+    const duracion = 1200;
+    const intervalo = 20;
+    const incremento = valorFinal / (duracion / intervalo);
 
-      const actualizar = setInterval(() => {
-        valorActual += incremento;
-        if (valorActual >= valorFinal) {
-          valorActual = valorFinal;
-          clearInterval(actualizar);
-        }
-        contador.textContent = `+${Math.floor(valorActual)}`;
-      }, intervalo);
-    });
-  };
-
-  const separador = document.querySelector(".separador-flotante-verde");
-  if (separador) {
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !animado) {
-            animado = true;
-            
-            animarContadores();
-            observer.unobserve(entry.target); // se ejecuta solo una vez
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(separador);
-  }
-
-  const scrollContainer = document.querySelector('.scroll-container');
-  const header = document.getElementById('main-header');
-  const inicio = document.getElementById('inicio');
-  
-  scrollContainer.addEventListener('scroll', () => {
-    const rect = inicio.getBoundingClientRect();
-    const visible = rect.bottom > 100; // Detecta si aún se ve parte de la sección "inicio"
-  
-    if (visible) {
-      header.classList.remove("oculto");
-    } else {
-      header.classList.add("oculto");
-    }
+    const actualizar = setInterval(() => {
+      valorActual += incremento;
+      if (valorActual >= valorFinal) {
+        valorActual = valorFinal;
+        clearInterval(actualizar);
+      }
+      contador.textContent = `+${Math.floor(valorActual)}`;
+    }, intervalo);
   });
+};
+
+const separador = document.querySelector(".separador-flotante-verde");
+if (separador) {
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animado) {
+          animado = true;
+
+          animarContadores();
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  observer.observe(separador);
+}
+
+const scrollContainer = document.querySelector('.scroll-container');
+const header = document.getElementById('main-header');
+const inicio = document.getElementById('inicio');
+
+scrollContainer.addEventListener('scroll', () => {
+  const rect = inicio.getBoundingClientRect();
+  const visible = rect.bottom > 100; 
+
+  if (visible) {
+    header.classList.remove("oculto");
+  } else {
+    header.classList.add("oculto");
+  }
+});

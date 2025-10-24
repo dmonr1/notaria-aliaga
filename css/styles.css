@@ -27,7 +27,6 @@ html {
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-
 }
 
 .scroll-container {
@@ -141,6 +140,7 @@ html {
     position: relative;
     left: 4%;
 }
+
 #main-header {
     position: fixed;
     top: 0;
@@ -148,16 +148,14 @@ html {
     width: 100%;
     transition: top 0.4s ease, opacity 0.4s ease;
     z-index: 1000;
-  }
-  /* Cuando el header se oculta */
-/* Cuando el header se oculta */
+}
+
 #main-header.oculto {
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
-  }
+}
 
-  
 @keyframes fadeInLeft {
     0% {
         transform: translateX(-60px);
@@ -232,7 +230,6 @@ html {
     gap: 10px;
     padding: 12px 28px;
     background: #d4af37;
-    /* Dorado más apagado */
     color: #000;
     font-weight: 600;
     font-size: 1.1rem;
@@ -250,7 +247,6 @@ html {
 
 .btn-conocenos:hover {
     background: #bfa233;
-    /* tono más cálido pero sobrio */
     box-shadow: 0 8px 25px rgba(191, 162, 51, 0.55);
     transform: translateY(-3px) scale(1.03);
 }
@@ -267,7 +263,6 @@ html {
 .btn-conocenos:hover i {
     transform: translateX(6px);
 }
-
 
 .titulo {
     display: flex;
@@ -307,7 +302,6 @@ html {
     margin-top: 20px;
     backdrop-filter: blur(4px);
 }
-
 
 html {
     scroll-behavior: auto;
@@ -844,7 +838,6 @@ html {
     padding: 15px 15px 15px 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     border-radius: 18px;
-
 }
 
 .servicios-grid::-webkit-scrollbar {
@@ -945,7 +938,6 @@ html {
     transition: transform 0.3s ease;
 }
 
-
 .elipse-contacto h2 {
     font-size: 1rem;
     color: #0d8812;
@@ -954,7 +946,6 @@ html {
     letter-spacing: 1px;
 }
 
-/* ==== CONTENEDOR FORM + MAPA ==== */
 .contacto-superior {
     display: flex;
     gap: 40px;
@@ -964,7 +955,6 @@ html {
     align-items: flex-start;
 }
 
-/* ==== CARD FORMULARIO Y MAPA ==== */
 .contacto-superior .card {
     background: #ffffff;
     border-radius: 20px;
@@ -983,7 +973,6 @@ html {
     box-shadow: 0 14px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* ==== FORMULARIO ==== */
 .form-card h2 {
     font-size: 1.6rem;
     color: #FF9900;
@@ -1015,7 +1004,6 @@ html {
     box-shadow: 0 0 6px rgba(255, 153, 0, 0.4);
 }
 
-/* ==== BOTÓN ENVIAR ==== */
 .btn-enviar {
     background: linear-gradient(135deg, #FFA54C, #FF6600);
     color: #fff;
@@ -1036,7 +1024,6 @@ html {
     box-shadow: 0 6px 0 #cc5200, 0 8px 16px rgba(0, 0, 0, 0.35);
 }
 
-/* ==== MAPA ==== */
 .mapa-direccion {
     text-align: center;
     margin-bottom: 20px;
@@ -1308,7 +1295,6 @@ html {
     animation: aparecerModal 0.4s ease;
 }
 
-/* Animación */
 @keyframes aparecerModal {
     from {
         transform: scale(0.9);
@@ -1321,7 +1307,6 @@ html {
     }
 }
 
-/* LADO IZQUIERDO - Imagen */
 .modal-izquierda {
     flex: 1;
     background: #f4f7fb;
