@@ -421,3 +421,60 @@ if (btnSubir && scrollContainerBtn && seccionInicio) {
     });
   });
 }
+
+
+const contadores = document.querySelectorAll(".separador-flotante-verde .numero");
+  let animado = false;
+
+  const animarContadores = () => {
+    contadores.forEach(contador => {
+      const texto = contador.textContent.trim();
+      const valorFinal = parseInt(texto.replace(/\D/g, "")); // elimina "+" o texto
+      let valorActual = 0;
+      const duracion = 1200; // milisegundos
+      const intervalo = 20; // ms por frame
+      const incremento = valorFinal / (duracion / intervalo);
+
+      const actualizar = setInterval(() => {
+        valorActual += incremento;
+        if (valorActual >= valorFinal) {
+          valorActual = valorFinal;
+          clearInterval(actualizar);
+        }
+        contador.textContent = `+${Math.floor(valorActual)}`;
+      }, intervalo);
+    });
+  };
+
+  const separador = document.querySelector(".separador-flotante-verde");
+  if (separador) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !animado) {
+            animado = true;
+            
+            animarContadores();
+            observer.unobserve(entry.target); // se ejecuta solo una vez
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(separador);
+  }
+
+  const scrollContainer = document.querySelector('.scroll-container');
+  const header = document.getElementById('main-header');
+  const inicio = document.getElementById('inicio');
+  
+  scrollContainer.addEventListener('scroll', () => {
+    const rect = inicio.getBoundingClientRect();
+    const visible = rect.bottom > 100; // Detecta si aún se ve parte de la sección "inicio"
+  
+    if (visible) {
+      header.classList.remove("oculto");
+    } else {
+      header.classList.add("oculto");
+    }
+  });
