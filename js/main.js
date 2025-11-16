@@ -1,459 +1,347 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const links = document.querySelectorAll('.nav-item, .btn-conocenos');
-  const scrollContainer = document.querySelector(".scroll-container");
-  const sections = document.querySelectorAll(".section");
-  let currentIndex = 0;
-  let isScrolling = false;
-
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      currentIndex = Array.from(sections).indexOf(target);
-      scrollToSection(currentIndex);
-    });
-  });
-
-  const scrollToSection = (index) => {
-    if (index < 0 || index >= sections.length) return;
-    isScrolling = true;
-    const targetSection = sections[index];
-    scrollContainer.scrollTo({
-      top: targetSection.offsetTop,
-      behavior: "smooth",
-    });
-    setTimeout(() => (isScrolling = false), 900);
-  };
-
-  document.addEventListener("keydown", (e) => {
-    if (isScrolling) return;
-    if (e.key === "ArrowDown") scrollToSection(++currentIndex);
-    if (e.key === "ArrowUp") scrollToSection(--currentIndex);
-  });
-
-  const sectionSomos = document.querySelector("#somos");
-  if (sectionSomos) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        sectionSomos.classList.toggle("somos-animar", entry.isIntersecting);
-      });
-    }, { threshold: 0.4 });
-    observer.observe(sectionSomos);
+const servicios = [
+  {
+    tipo: "E",
+    titulo: "Autorización de Viaje – Interior",
+    icon: "fa-solid fa-plane-departure",
+    img: "viajes.jpg",
+    req: [
+      "Presencia de cualquiera de los padres.",
+      "Completar los datos en la solicitud.",
+      "DNI del padre solicitante, vigente y sin multas electorales.",
+      "DNI del menor o copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).",
+      "Si la Partida fue expedida en provincia, debe estar visada por RENIEC.",
+      "Si interviene apoderado: Vigencia de poder emitida por SUNARP (máx. 15 días)."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Autorización de Viaje – Exterior",
+    icon: "fa-solid fa-plane",
+    img: "viajes.jpg",
+    req: [
+      "Presencia de ambos padres.",
+      "Completar los datos en la solicitud.",
+      "DNI de ambos padres, vigentes y sin multas electorales.",
+      "DNI del menor.",
+      "Copia certificada de la Partida de nacimiento (máx. 30 días de antigüedad).",
+      "Si la Partida fue expedida en provincia, debe estar visada por RENIEC.",
+      "Si interviene apoderado: Vigencia de poder emitida por SUNARP (máx. 15 días)."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Testamento",
+    icon: "fa-solid fa-scroll",
+    img: "testamento.jpg",
+    req: [
+      "Dos testigos mayores de edad, no familiares entre sí. DNI vigente del testador y testigos.",
+      "Copia literal actualizada de Partida Registral de inmuebles.",
+      "Boleta informativa de vehículos.",
+      "Idealmente DNI o datos de los herederos.",
+      "La notaría puede solicitar documentos adicionales."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Matrimonio Civil",
+    icon: "fa-solid fa-ring",
+    img: "matrimonio.jpg",
+    req: [
+      "Copia de DNI de los contrayentes y testigos, vigentes y sin multas electorales.",
+      "Copia certificada de Partidas de nacimiento (máx. 30 días).",
+      "Si fue expedida en provincia, visada por RENIEC.",
+      "Certificado domiciliario (máx. 30 días).",
+      "Certificado médico prenupcial (máx. 30 días).",
+      "Dos testigos mayores de edad, conocedores por más de 3 años.",
+      "Declaración jurada de no impedimento matrimonial.",
+      "Certificado Negativo de Matrimonio (RENIEC).",
+      "Certificado Negativo de Unión de Hecho (SUNARP)."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Compraventa",
+    icon: "fa-solid fa-house-chimney",
+    img: "compra.jpg",
+    req: [
+      "Minuta firmada y autorizada por abogado.",
+      "Copia Literal actualizada de la Partida Registral del inmueble.",
+      "Copia de DNI de los otorgantes.",
+      "Si hay apoderado: Vigencia de poder SUNARP.",
+      "Hojas HR y PU del autovalúo municipal (año vigente).",
+      "Constancia de no adeudo del impuesto predial del vendedor.",
+      "Pago de Impuesto a la Renta y/o Alcabala si corresponde.",
+      "Medio de pago bancarizado si el monto supera 1 UIT."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Transferencia de Posesión",
+    icon: "fa-solid fa-file-signature",
+    img: "trasnferencia.jpg",
+    req: [
+      "Contrato de transferencia o traspaso.",
+      "Copia de DNI de los otorgantes.",
+      "Hojas HR y PU del autovalúo municipal (año vigente).",
+      "Constancia de posesión municipal o de junta directiva.",
+      "Medio de pago bancario si supera 1 UIT."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Donación",
+    icon: "fa-solid fa-gift",
+    img: "donacion.jpg",
+    req: [
+      "Minuta firmada y autorizada por abogado.",
+      "Copia literal actualizada de la partida del inmueble.",
+      "Copia de DNI de los otorgantes.",
+      "Si interviene apoderado: Vigencia de poder SUNARP.",
+      "Hojas HR y PU del autovalúo.",
+      "Constancia de No Adeudo del impuesto predial del donante.",
+      "Liquidación y pago del Impuesto de Alcabala del donatario si corresponde."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Separación de Patrimonio",
+    icon: "fa-solid fa-heart-crack",
+    img: "separacion.jpg",
+    req: [
+      "Minuta firmada por ambos cónyuges y autorizada por abogado.",
+      "Copia de DNI de ambos cónyuges.",
+      "Si existen bienes: Tarjeta de propiedad."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Divorcio Notarial",
+    icon: "fa-solid fa-file-contract",
+    img: "divorico.jpeg",
+    req: [
+      "Solicitud firmada por ambos cónyuges o apoderado.",
+      "Copias de DNI de los intervinientes.",
+      "Vigencia de poder si aplica.",
+      "Copia certificada de la Partida de matrimonio.",
+      "Declaración jurada del último domicilio conyugal.",
+      "Si hay hijos menores: Partidas de nacimiento y acuerdo de patria potestad/tenencia.",
+      "Si hijos mayores con incapacidad: acreditar condición médica."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Patrimonio Familiar",
+    icon: "fa-solid fa-people-roof",
+    img: "certificaciones.jpg",
+    req: [
+      "Minuta firmada y autorizada por abogado.",
+      "Copia de DNI de los contratantes.",
+      "Copia literal de la partida registral del inmueble.",
+      "Certificado negativo de gravamen.",
+      "PU y HR y/o constancia de no adeudo municipal.",
+      "Partida de matrimonio y/o partidas de nacimiento de hijos."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Unión de Hecho",
+    icon: "fa-solid fa-people-arrows",
+    img: "union.jpg",
+    req: [
+      "Minuta firmada por ambas partes.",
+      "Reconocimiento expreso de convivencia mínima de 2 años.",
+      "Declaración de no impedimento matrimonial.",
+      "Declaración jurada de domicilio.",
+      "Certificado negativo de unión de hecho SUNARP.",
+      "Declaración de dos testigos.",
+      "Documentos que acrediten convivencia (contratos, servicios, pólizas, etc.)."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Poder por Escritura Pública",
+    icon: "fa-solid fa-user-pen",
+    img: "escritura.jpeg",
+    req: [
+      "DNI del poderdante.",
+      "DNI del apoderado.",
+      "Copia literal o partida registral (máx. 30 días)."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Apertura de Libros",
+    icon: "fa-solid fa-book",
+    img: "apertura_libros.jpg",
+    req: [
+      "Copia literal de la empresa o asociación.",
+      "Ficha RUC.",
+      "Libro anterior (si existe).",
+      "Libro nuevo.",
+      "DNI del solicitante."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Apertura de Hojas Sueltas",
+    icon: "fa-solid fa-book-open",
+    img: "suelta.jpg",
+    req: [
+      "Ficha RUC.",
+      "Libro asociado.",
+      "Copia literal o vigencia de poder.",
+      "DNI del representante."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Copias Certificadas",
+    icon: "fa-solid fa-file-circle-check",
+    img: "certificaciones.jpg",
+    req: [
+      "Copia literal actual.",
+      "Libro aperturado.",
+      "Copia del libro.",
+      "Constancia de convocatoria o quórum si aplica.",
+      "Ficha RUC."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Transferencia Vehicular",
+    icon: "fa-solid fa-car",
+    img: "trasnferencia.jpg",
+    req: [
+      "DNI del vendedor y comprador.",
+      "Tarjeta de propiedad.",
+      "SOAT vigente.",
+      "Pago de impuesto vehicular si aplica.",
+      "Medio de pago bancarizado.",
+      "Boleta informativa (SUNARP)."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Prescripción Adquisitiva de Inmueble",
+    icon: "fa-solid fa-file-shield",
+    img: "inmueble.jpg",
+    req: [
+      "Solicitud firmada por el interesado y testigos.",
+      "Copia literal del inmueble o búsqueda catastral.",
+      "Documentos que acrediten posesión continua por 10 años.",
+      "DNI del solicitante.",
+      "Recibos de servicios de 10 años.",
+      "Certificación municipal de posesión.",
+      "Declaración testimonial de 3 a 6 testigos."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Rectificación de Partidas",
+    icon: "fa-solid fa-eraser",
+    img: "rectificacion.jpg",
+    req: [
+      "Comparecencia del solicitante con DNI.",
+      "Si interviene apoderado: Vigencia de poder SUNARP (máx. 30 días).",
+      "Adjuntar partida a rectificar y señalar errores.",
+      "Partida de nacimiento o bautismo del padre/madre si corresponde.",
+      "Verificación biométrica o migraciones.",
+      "Elaboración y firma de minuta notarial.",
+      "Publicación del trámite correspondiente."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Constitución de Personas Jurídicas",
+    icon: "fa-solid fa-building",
+    img: "constitucion.jpg",
+    req: [
+      "Reserva de nombre (SUNARP).",
+      "Copia del DNI de los intervinientes.",
+      "Aporte en bienes muebles: Informe de valorización.",
+      "Aporte en inmueble: Copia literal + PU/HR + predial + impuestos.",
+      "Aporte en dinero: Depósito bancario a favor de la empresa."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Cambio de E.I.R.L a S.A.C.",
+    icon: "fa-solid fa-building-circle-check",
+    img: "cambio.jpg",
+    req: [
+      "DNI del titular y nuevos socios.",
+      "Libro de actas.",
+      "Ficha RUC.",
+      "Copia literal de la partida registral.",
+      "Balance general suscrito por CPC.",
+      "Publicación en diarios (3 veces).",
+      "Minuta suscrita y acta de decisión del titular."
+    ]
   }
+];
 
-  const contactoSection = document.querySelector('#contacto');
-  const allNavLinks = document.querySelectorAll('.nav-item');
-  if (contactoSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        allNavLinks.forEach(link => {
-          link.classList.toggle('contacto-activo', entry.isIntersecting);
-        });
-      });
-    }, { root: scrollContainer, threshold: 0.5 });
-    observer.observe(contactoSection);
-  }
+function cargarServicios() {
+const contP = document.getElementById("lista-protocolares");
+const contE = document.getElementById("lista-extras"); 
 
-  const carruselContenedor = document.querySelector(".carrusel-contenedor");
-  const indicadores = document.querySelectorAll(".indicador");
-  const total = indicadores.length;
-  let indice = 0;
-  let intervalo;
+  servicios.forEach(s => {
+    const li = document.createElement("li");
+    li.className = "serv-item";
+    li.innerHTML = `<i class="${s.icon}"></i> ${s.titulo}`;
+    li.addEventListener("click", () => abrirModal(s));
 
-  function mostrarImagen(n) {
-    indice = (n + total) % total;
-    carruselContenedor.style.transform = `translateX(-${indice * 100}%)`;
-
-    indicadores.forEach((el, i) =>
-      el.classList.toggle("activo", i === indice)
-    );
-  }
-
-  function iniciarAutoSlide() {
-    intervalo = setInterval(() => {
-      mostrarImagen(indice + 1);
-    }, 5000);
-  }
-
-  indicadores.forEach((el, i) => {
-    el.addEventListener("click", () => {
-      mostrarImagen(i);
-      clearInterval(intervalo);
-      iniciarAutoSlide();
-    });
-  });
-
-  iniciarAutoSlide();
-
-  const modal = document.getElementById("modal-servicio");
-  const cerrarModal = document.getElementById("cerrar-modal");
-  const modalImg = document.getElementById("modal-imagen");
-  const modalTitulo = document.getElementById("modal-titulo");
-  const modalDesc = document.getElementById("modal-descripcion");
-
-  const servicios = {
-    "Autorización de viaje de menor": {
-      img: "../images/servicios/viajes.jpg",
-      descripcion: `
-      <strong>REQUISITOS (VIAJE AL INTERIOR)</strong><br>
-      1. Presencia de cualquiera de los padres.<br>
-      2. Completar los datos en la solicitud.<br>
-      3. DNI del padre solicitante y del acompañante (original y copia).<br>
-      4. DNI del menor y copia certificada de la Partida de nacimiento (máx. 30 días).<br>
-      5. Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-      6. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).<br><br>
-      <strong>REQUISITOS (VIAJE AL EXTERIOR)</strong><br>
-      1. Presencia de ambos padres.<br>
-      2. Completar los datos en la solicitud.<br>
-      3. DNI de ambos padres, vigentes y sin multas electorales.<br>
-      4. DNI del menor.<br>
-      5. Copia certificada de la Partida de nacimiento (máx. 30 días).<br>
-      6. Si la Partida es expedida por municipalidad en provincias, debe estar visada por RENIEC.<br>
-      7. Si interviene un apoderado: vigencia de poder emitida por SUNARP (máx. 15 días).`
-    },
-
-    "Testamento": {
-      img: "../images/servicios/testamento.jpg",
-      descripcion: `
-      <strong>DOCUMENTOS:</strong><br>
-      1. Dos testigos mayores de edad, no familiares ni esposos entre sí.<br>
-      2. Copia de DNI del testador y de los dos testigos, vigentes y sin multas.<br>
-      3. Copia literal actualizada de la Partida registral de sus inmuebles.<br>
-      4. Boleta informativa actualizada de los vehículos.<br>
-      5. Idealmente copia de DNI de sus herederos o datos completos.<br>
-      6. La notaría puede solicitar documentos adicionales.`
-    },
-
-    "Matrimonio": {
-      img: "../images/servicios/matrimonio.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Copia de DNI de contrayentes y testigos, vigentes y sin multas.<br>
-      2. Copia certificada de Partida de nacimiento (máx. 30 días).<br>
-      3. Si es emitida en provincias, debe estar visada por RENIEC.<br>
-      4. Certificado domiciliario (máx. 30 días).<br>
-      5. Certificado médico de no impedimento para casarse.<br>
-      6. Dos testigos mayores de edad (no parientes).<br>
-      7. Declaración jurada de los testigos.<br>
-      8. Certificados negativos de matrimonio y unión de hecho (RENIEC y SUNARP).`
-    },
-
-    "Compraventa": {
-      img: "../images/servicios/tramites.jpeg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
-      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
-      3. Copia de DNI de los otorgantes.<br>
-      4. Vigencia de poder actualizada si hay apoderado.<br>
-      5. Hojas HR y PU del autovalúo municipal.<br>
-      6. Constancia de No Adeudo del Impuesto Predial del vendedor.<br>
-      7. Liquidación y pago de impuestos (Renta y Alcabala) si corresponde.<br>
-      8. Medio de pago bancario si el valor supera 1 UIT.`
-    },
-
-    "Separación de Patrimonio": {
-      img: "../images/servicios/separacion.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Elaboración de minuta firmada por abogado y ambos cónyuges.<br>
-      2. Copia de DNI de ambos cónyuges.<br>
-      3. Con bienes: Tarjeta de propiedad.<br>
-      4. Sin bienes: solo los documentos anteriores.`
-    },
-
-    "Divorcio": {
-      img: "../images/servicios/divorico.jpeg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Solicitud firmada por ambos cónyuges o apoderado.<br>
-      2. Copia de documento de identidad de los intervinientes.<br>
-      3. Vigencia de poder actualizado si aplica.<br>
-      4. Copia certificada de la partida de matrimonio.<br>
-      5. Declaración jurada del último domicilio conyugal.<br>
-      6. Si hay hijos menores: partidas de nacimiento y acta de conciliación o sentencia.<br>
-      7. Si hay hijos mayores con incapacidad: partidas de nacimiento.`
-    },
-
-    "Patrimonio Familiar": {
-      img: "../images/servicios/inmueble.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Minuta firmada por los contratantes y autorizada por abogado.<br>
-      2. Copia de documento de identidad de los contratantes.<br>
-      3. Vigencia de poder actualizado si aplica.<br>
-      4. CRI o copia literal de la Partida Registral.<br>
-      5. Certificado Negativo de Gravamen.<br>
-      6. Formularios municipales (PU y HR) y recibo de pago del impuesto predial.<br>
-      7. Partida de matrimonio y/o nacimiento de hijos.`
-    },
-
-    "Reconocimiento de Unión de Hecho": {
-      img: "../images/servicios/union.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Minuta firmada por ambas partes y autorizada por abogado.<br>
-      2. Reconocimiento expreso de convivencia ≥ 2 años.<br>
-      3. Declaración de no impedimento matrimonial.<br>
-      4. Declaración jurada de domicilio.<br>
-      5. Certificado negativo de unión de hecho (SUNARP).<br>
-      6. Declaración de dos testigos (no familiares).<br>
-      7. Documentos que acrediten convivencia ≥ 2 años.`
-    },
-
-    "Rectificación de Partidas": {
-      img: "../images/servicios/rectificacion.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Comparecencia del solicitante con DNI.<br>
-      2. Certificado de vigencia de poder actualizado si aplica.<br>
-      3. Adjuntar partida a rectificar.<br>
-      4. Adjuntar partida de nacimiento o bautismo si aplica.<br>
-      5. Verificación biométrica de identidad.<br>
-      6. Elaboración y firma de minuta.<br>
-      7. Publicación del procedimiento no contencioso.`
-    },
-
-    "Constitución de Personas Jurídicas": {
-      img: "../images/servicios/constitucion.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Reserva de nombre expedida por Registros Públicos.<br>
-      2. Copia de documento de identidad de los contratantes.<br>
-      3. Bien inmueble: copia literal + formularios municipales + pagos de impuestos.<br>
-      4. Bien mueble: informe de valorización con marca, modelo y número de serie.<br>
-      5. Dinero: depósito bancario original a favor de la empresa.`
-    },
-
-    "Prescripción Adquisitiva de Inmueble": {
-      img: "../images/servicios/garantia.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Documentos que acrediten posesión continua ≥ 10 años.<br>
-      2. Copia simple del DNI del solicitante.<br>
-      3. Recibos de luz, agua y teléfono últimos 10 años.<br>
-      4. Certificación municipal o recibos de autoavalúo.<br>
-      5. Declaración testimonial de 3-6 personas mayores de 25 años.`
-    },
-
-    "Transferencia Vehicular": {
-      img: "../images/servicios/trasnferencia.jpg",
-      descripcion: `
-      REQUISITOS:<br>
-      1. DNI del vendedor y comprador (original y copia).<br>
-      2. Tarjeta de propiedad (original y copia).<br>
-      3. SOAT vigente.<br>
-      4. Pago del impuesto vehicular si auto 2022-2025.<br>
-      5. Medio de pago bancarizado (voucher o transferencia).<br>
-      6. Boleta informativa (Registros Públicos).`
-    },
-
-    "Donación": {
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
-      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
-      3. Copia de DNI de los otorgantes.<br>
-      4. Vigencia de poder actualizada si aplica.<br>
-      5. Hojas HR y PU del autovalúo municipal del año.<br>
-      6. Constancia de No Adeudo del Impuesto Predial del donante.<br>
-      7. Liquidación y pago del Impuesto de Alcabala del donatario.`
-    },
-
-    "Anticipo de Legítima": {
-      img: "../images/servicios/anticipo.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Minuta firmada por los otorgantes y autorizada por abogado.<br>
-      2. Copia literal actualizada de la Partida registral del inmueble (SUNARP).<br>
-      3. Copia de DNI de los otorgantes.<br>
-      4. Vigencia de poder actualizada si aplica.<br>
-      5. Hojas HR y PU del autovalúo municipal del año.<br>
-      6. Constancia de No Adeudo del Impuesto Predial del anticipante.<br>
-      7. Copia certificada de la partida de nacimiento del anticipado.`
-    },
-
-    "Poder por Escritura Pública": {
-      img: "../images/servicios/domiciliario.jpeg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. DNI del poder dante.<br>
-      2. DNI del apoderado.<br>
-      3. Copia literal o partida registral (Máx. 30 días de antigüedad).`
-    },
-
-    "Apertura de Libros": {
-      img: "../images/servicios/apertura_libros.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Copia literal de la empresa o asociación.<br>
-      2. Ficha RUC de la empresa o asociación.<br>
-      3. Libro Anterior (en caso se tenga).<br>
-      4. Libro Nuevo.<br>
-      5. DNI del solicitante (físico y copia).`
-    },
-
-    "Copias Certificadas": {
-      img: "../images/servicios/certificaciones.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Copia literal actual.<br>
-      2. Libro aperturado.<br>
-      3. Copia del libro.<br>
-      4. Constancias de convocatoria y/o QUORUM debidamente redactadas.<br>
-      5. Ficha RUC.`
-    },
-
-    "Cambio de E.I.R.L a S.A.C": {
-      img: "../images/servicios/cambio.jpg",
-      descripcion: `
-      <strong>REQUISITOS:</strong><br>
-      1. Copia del documento de identidad del titular y su cónyuge (DNI, carné de extranjería) en el caso de ser casado, así como de los nuevos socios.<br>
-      2. Copia del documento de identidad de el/los socios/s ingresante/s y su/s cónyuge/s (DNI, carné de extranjería) Libro de actas de decisión de titular eril.<br>
-      3. Ficha ruc.<br>
-      4. Copia literal completa de la partida registral de la empresa.<br>
-      5. Copia simple del testimonio de constitución y modificaciones.<br>
-      6. Balance general suscrito por contador público colegiado al día anterior de la expedición de la escritura pública.<br>
-      7. Monto y forma de aporte de los nuevos socios (certificado de depósito – informe de valorización - otros).<br>
-      8. PUBLICACIÓNES EN DIARIOS: 3 veces con intervalo de 5 días. Luego de 30 días se expedirá la escritura pública. <br>
-      9. Minuta suscrita por abogado y por la persona autorizada en acta.<br>
-      10. Acta de decisión de titular donde decide transformar la empresa de EIRL a S.A.C inserta en el libro de actas.`
-    },
-  };
-
-  document.querySelectorAll(".servicio-mini button").forEach(button => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".servicio-mini");
-      const titulo = card.querySelector("h4").innerText.trim();
-
-      const data = servicios[titulo] || null;
-
-      modal.classList.add("activo");
-      modalImg.src = data?.img || card.querySelector("img").src;
-      modalTitulo.textContent = titulo;
-      modalDesc.innerHTML = data?.descripcion || "Información próximamente disponible.";
-    });
-  });
-
-  cerrarModal.addEventListener("click", () => modal.classList.remove("activo"));
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.classList.remove("activo");
-  });
-
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.classList.remove("activo");
-  });
-  const menuIcon = document.getElementById("menu-icon");
-  const sidebar = document.getElementById("sidebar");
-  const cerrarSidebar = document.getElementById("cerrar-sidebar");
-
-  menuIcon.addEventListener("click", () => sidebar.classList.add("activo"));
-  cerrarSidebar.addEventListener("click", () => sidebar.classList.remove("activo"));
-  document.querySelectorAll(".nav-item").forEach(link =>
-    link.addEventListener("click", () => sidebar.classList.remove("activo"))
-  );
-
-  const header = document.querySelector(".main-header");
-  const inicioSection = document.querySelector("#inicio");
-  const scrollContainerEl = document.querySelector(".scroll-container");
-
-  scrollContainerEl.addEventListener("scroll", () => {
-    const rect = inicioSection.getBoundingClientRect();
-    const headerShouldHide = rect.bottom <= 50;
-    header.classList.toggle("oculto", headerShouldHide);
-  });
-
-});
-
-const inputBuscar = document.getElementById("buscarServicio");
-const serviciosCards = document.querySelectorAll(".servicio-mini");
-
-inputBuscar.addEventListener("input", () => {
-  const texto = inputBuscar.value.toLowerCase().trim();
-  serviciosCards.forEach(card => {
-    const titulo = card.querySelector("h4").textContent.toLowerCase();
-    card.style.display = titulo.includes(texto) ? "flex" : "none";
-  });
-});
-
-const btnSubir = document.getElementById("btn-subir");
-const scrollContainerBtn = document.querySelector(".scroll-container");
-const seccionInicio = document.getElementById("inicio");
-
-if (btnSubir && scrollContainerBtn && seccionInicio) {
-  scrollContainerBtn.addEventListener("scroll", () => {
-    const scrollTop = scrollContainerBtn.scrollTop;
-    const limite = seccionInicio.offsetHeight * 0.7;
-
-    if (scrollTop > limite) {
-      btnSubir.classList.add("mostrar");
-    } else {
-      btnSubir.classList.remove("mostrar");
-    }
-  });
-
-  btnSubir.addEventListener("click", () => {
-    scrollContainerBtn.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (s.tipo === "P") contP.appendChild(li);
+    else contE.appendChild(li);
   });
 }
 
-const contadores = document.querySelectorAll(".separador-flotante-verde .numero");
-let animado = false;
+document.addEventListener("DOMContentLoaded", cargarServicios);
 
-const animarContadores = () => {
-  contadores.forEach(contador => {
-    const texto = contador.textContent.trim();
-    const valorFinal = parseInt(texto.replace(/\D/g, ""));
-    let valorActual = 0;
-    const duracion = 1200;
-    const intervalo = 20;
-    const incremento = valorFinal / (duracion / intervalo);
 
-    const actualizar = setInterval(() => {
-      valorActual += incremento;
-      if (valorActual >= valorFinal) {
-        valorActual = valorFinal;
-        clearInterval(actualizar);
-      }
-      contador.textContent = `+${Math.floor(valorActual)}`;
-    }, intervalo);
-  });
-};
+const modal = document.getElementById("modal-servicio");
+const btnCerrar = document.getElementById("cerrar-modal");
 
-const separador = document.querySelector(".separador-flotante-verde");
-if (separador) {
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animado) {
-          animado = true;
-
-          animarContadores();
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-  observer.observe(separador);
-}
-
-const scrollContainer = document.querySelector('.scroll-container');
-const header = document.getElementById('main-header');
-const inicio = document.getElementById('inicio');
-
-scrollContainer.addEventListener('scroll', () => {
-  const rect = inicio.getBoundingClientRect();
-  const visible = rect.bottom > 100; 
-
-  if (visible) {
-    header.classList.remove("oculto");
+function abrirModal(s) {
+  const img = document.getElementById("modal-imagen");
+  if (s.img && s.img.trim() !== "") {
+    img.src = "../images/servicios/" + s.img;
+    img.style.display = "block";
   } else {
-    header.classList.add("oculto");
+    img.style.display = "none";
+  }
+
+  document.getElementById("modal-titulo").textContent = s.titulo;
+  document.getElementById("modal-descripcion").innerHTML =
+    s.req.map(r => `<li>${r}</li>`).join("");
+
+  modal.classList.add("activo");
+}
+
+btnCerrar.addEventListener("click", () => modal.classList.remove("activo"));
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) modal.classList.remove("activo");
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") modal.classList.remove("activo");
+});
+
+
+const btnTop = document.getElementById("btn-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btnTop.classList.add("show");
+  } else {
+    btnTop.classList.remove("show");
   }
 });
+
+btnTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
