@@ -168,7 +168,7 @@ body {
 }
 
 .btn-top:hover {
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 .inicio {
@@ -631,39 +631,31 @@ body {
     margin-top: 2px;
 }
 
-
-/* Botón flotante WhatsApp */
 .btn-wsp {
-  position: fixed;
-  bottom: 20px; /* distancia desde abajo */
-  right: 20px;  /* distancia desde la derecha */
-  width: 60px;
-  height: 60px;
-  background-color: #25d366; /* verde WhatsApp */
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 9999;
-  transition: transform 0.2s;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    transition: transform 0.2s;
 }
 
 .btn-wsp:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Footer básico */
-.footer {
-  background-color: #007a34;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-}
+
 
 
 @media(max-width: 780px) {
@@ -702,6 +694,15 @@ body {
         width: 180px;
         height: 88px
     }
+
+    .footer-contenedor {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-columna.footer-social {
+        grid-column: 1 / -1;
+    }
+
 }
 
 @media (max-width: 720px) {
@@ -722,7 +723,7 @@ body {
         transition: right .28s
     }
 
-    .nav-links.open {
+    .nav-links.activo  {
         right: 0
     }
 
@@ -761,5 +762,13 @@ body {
 
     .modal-contenido {
         flex-direction: column
+    }
+
+    .footer-contenedor {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-columna.footer-social {
+        grid-column: 1 / -1;
     }
 }

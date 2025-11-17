@@ -281,8 +281,8 @@ const servicios = [
 ];
 
 function cargarServicios() {
-const contP = document.getElementById("lista-protocolares");
-const contE = document.getElementById("lista-extras"); 
+  const contP = document.getElementById("lista-protocolares");
+  const contE = document.getElementById("lista-extras");
 
   servicios.forEach(s => {
     const li = document.createElement("li");
@@ -345,3 +345,15 @@ btnTop.addEventListener("click", () => {
   });
 });
 
+const menuIcon = document.getElementById("menu-icon");
+const sidebar = document.getElementById("sidebar");
+
+menuIcon.addEventListener("click", () => {
+  sidebar.classList.toggle("activo");
+});
+
+document.querySelectorAll(".nav-links .nav-item").forEach(item => {
+  item.addEventListener("click", () => {
+    sidebar.classList.remove("activo");
+  });
+});
