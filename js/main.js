@@ -115,7 +115,7 @@ const servicios = [
   },
   {
     tipo: "P",
-    titulo: "Divorcio Notarial",
+    titulo: "Divorcio",
     icon: "fa-solid fa-file-contract",
     img: "divorico.jpeg",
     req: [
@@ -144,7 +144,7 @@ const servicios = [
   },
   {
     tipo: "P",
-    titulo: "Unión de Hecho",
+    titulo: "Reconocimiento de Unión de Hecho",
     icon: "fa-solid fa-people-arrows",
     img: "union.jpg",
     req: [
@@ -155,42 +155,6 @@ const servicios = [
       "Certificado negativo de unión de hecho SUNARP.",
       "Declaración de dos testigos.",
       "Documentos que acrediten convivencia (contratos, servicios, pólizas, etc.)."
-    ]
-  },
-  {
-    tipo: "P",
-    titulo: "Poder por Escritura Pública",
-    icon: "fa-solid fa-user-pen",
-    img: "escritura.jpeg",
-    req: [
-      "DNI del poderdante.",
-      "DNI del apoderado.",
-      "Copia literal o partida registral (máx. 30 días)."
-    ]
-  },
-  {
-    tipo: "E",
-    titulo: "Apertura de Libros",
-    icon: "fa-solid fa-book",
-    img: "apertura_libros.jpg",
-    req: [
-      "Copia literal de la empresa o asociación.",
-      "Ficha RUC.",
-      "Libro anterior (si existe).",
-      "Libro nuevo.",
-      "DNI del solicitante."
-    ]
-  },
-  {
-    tipo: "E",
-    titulo: "Apertura de Hojas Sueltas",
-    icon: "fa-solid fa-book-open",
-    img: "suelta.jpg",
-    req: [
-      "Ficha RUC.",
-      "Libro asociado.",
-      "Copia literal o vigencia de poder.",
-      "DNI del representante."
     ]
   },
   {
@@ -222,21 +186,6 @@ const servicios = [
   },
   {
     tipo: "P",
-    titulo: "Prescripción Adquisitiva de Inmueble",
-    icon: "fa-solid fa-file-shield",
-    img: "inmueble.jpg",
-    req: [
-      "Solicitud firmada por el interesado y testigos.",
-      "Copia literal del inmueble o búsqueda catastral.",
-      "Documentos que acrediten posesión continua por 10 años.",
-      "DNI del solicitante.",
-      "Recibos de servicios de 10 años.",
-      "Certificación municipal de posesión.",
-      "Declaración testimonial de 3 a 6 testigos."
-    ]
-  },
-  {
-    tipo: "P",
     titulo: "Rectificación de Partidas",
     icon: "fa-solid fa-eraser",
     img: "rectificacion.jpg",
@@ -263,21 +212,7 @@ const servicios = [
       "Aporte en dinero: Depósito bancario a favor de la empresa."
     ]
   },
-  {
-    tipo: "P",
-    titulo: "Cambio de E.I.R.L a S.A.C.",
-    icon: "fa-solid fa-building-circle-check",
-    img: "cambio.jpg",
-    req: [
-      "DNI del titular y nuevos socios.",
-      "Libro de actas.",
-      "Ficha RUC.",
-      "Copia literal de la partida registral.",
-      "Balance general suscrito por CPC.",
-      "Publicación en diarios (3 veces).",
-      "Minuta suscrita y acta de decisión del titular."
-    ]
-  }
+
 ];
 
 function cargarServicios() {
