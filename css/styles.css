@@ -655,9 +655,6 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-
-
-
 @media(max-width: 780px) {
     .modal-body {
         flex-direction: column;
@@ -665,8 +662,9 @@ body {
 }
 
 @media (max-width: 1100px) {
-    .inicio-imagen {
-        display: none;
+
+    .inicio-imagen img {
+        width: 400px;
     }
 
     .grid-nosotros {
@@ -723,7 +721,7 @@ body {
         transition: right .28s
     }
 
-    .nav-links.activo  {
+    .nav-links.activo {
         right: 0
     }
 
