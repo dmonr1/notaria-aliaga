@@ -700,7 +700,6 @@ body {
     .footer-columna.footer-social {
         grid-column: 1 / -1;
     }
-
 }
 
 @media (max-width: 720px) {

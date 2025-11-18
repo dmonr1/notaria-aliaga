@@ -232,7 +232,6 @@ function cargarServicios() {
 
 document.addEventListener("DOMContentLoaded", cargarServicios);
 
-
 const modal = document.getElementById("modal-servicio");
 const btnCerrar = document.getElementById("cerrar-modal");
 
@@ -261,7 +260,6 @@ modal.addEventListener("click", e => {
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") modal.classList.remove("activo");
 });
-
 
 const btnTop = document.getElementById("btn-top");
 
