@@ -475,12 +475,14 @@ header {
     /* Fondo blanco y bordes suaves para mejor look */
     background: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* sin sombra por defecto */
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    /* sin sombra por defecto */
 }
 
 .inst-box:hover {
     transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* sombra suave */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    /* sombra suave */
 }
 
 .inst-box img {
@@ -492,7 +494,8 @@ header {
 }
 
 .inst-box:hover img {
-    opacity: 1; /* un toque más nítido */
+    opacity: 1;
+    /* un toque más nítido */
 }
 
 
@@ -886,5 +889,18 @@ header {
         display: flex;
         padding: 22px;
         gap: 00px;
+    }
+
+    .modal-header {
+        padding: 6px 22px;
+    }
+
+    .modal-imagen-box {
+        flex: 1 1 70%;
+    }
+
+    img {
+        width: 70%;
+        border-radius: 12px;
     }
 }
