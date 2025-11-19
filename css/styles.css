@@ -882,13 +882,13 @@ header {
 
     .modal-req-list {
         overflow-y: auto;
-        height: 200px;
+        height: 175px;
     }
 
     .modal-body {
         display: flex;
         padding: 22px;
-        gap: 00px;
+        gap: 0px;
     }
 
     .modal-header {
@@ -903,4 +903,9 @@ header {
         width: 70%;
         border-radius: 12px;
     }
+
+    .modal-texto {
+        flex: 1 1 175px;
+    }
+    
 }
