@@ -43,7 +43,7 @@ const servicios = [
   },
   {
     tipo: "P",
-    titulo: "Matrimonio Civil",
+    titulo: "Matrimonio",
     icon: "fa-solid fa-ring",
     img: "matrimonio.jpg",
     req: [
@@ -72,34 +72,6 @@ const servicios = [
       "Constancia de no adeudo del impuesto predial del vendedor.",
       "Pago de Impuesto a la Renta y/o Alcabala si corresponde.",
       "Medio de pago bancarizado si el monto supera 1 UIT."
-    ]
-  },
-  {
-    tipo: "P",
-    titulo: "Transferencia de Posesión",
-    icon: "fa-solid fa-file-signature",
-    img: "trasnferencia.jpg",
-    req: [
-      "Contrato de transferencia o traspaso.",
-      "Copia de DNI de los otorgantes.",
-      "Hojas HR y PU del autovalúo municipal (año vigente).",
-      "Constancia de posesión municipal o de junta directiva.",
-      "Medio de pago bancario si supera 1 UIT."
-    ]
-  },
-  {
-    tipo: "P",
-    titulo: "Donación",
-    icon: "fa-solid fa-gift",
-    img: "donacion.jpg",
-    req: [
-      "Minuta firmada y autorizada por abogado.",
-      "Copia literal actualizada de la partida del inmueble.",
-      "Copia de DNI de los otorgantes.",
-      "Si interviene apoderado: Vigencia de poder SUNARP.",
-      "Hojas HR y PU del autovalúo.",
-      "Constancia de No Adeudo del impuesto predial del donante.",
-      "Liquidación y pago del Impuesto de Alcabala del donatario si corresponde."
     ]
   },
   {
@@ -158,33 +130,6 @@ const servicios = [
     ]
   },
   {
-    tipo: "E",
-    titulo: "Copias Certificadas",
-    icon: "fa-solid fa-file-circle-check",
-    img: "certificaciones.jpg",
-    req: [
-      "Copia literal actual.",
-      "Libro aperturado.",
-      "Copia del libro.",
-      "Constancia de convocatoria o quórum si aplica.",
-      "Ficha RUC."
-    ]
-  },
-  {
-    tipo: "P",
-    titulo: "Transferencia Vehicular",
-    icon: "fa-solid fa-car",
-    img: "trasnferencia.jpg",
-    req: [
-      "DNI del vendedor y comprador.",
-      "Tarjeta de propiedad.",
-      "SOAT vigente.",
-      "Pago de impuesto vehicular si aplica.",
-      "Medio de pago bancarizado.",
-      "Boleta informativa (SUNARP)."
-    ]
-  },
-  {
     tipo: "P",
     titulo: "Rectificación de Partidas",
     icon: "fa-solid fa-eraser",
@@ -212,6 +157,64 @@ const servicios = [
       "Aporte en dinero: Depósito bancario a favor de la empresa."
     ]
   },
+  {
+    tipo: "P",
+    titulo: "Prescipción Adquisitiva de Inmueble",
+    icon: "fa-solid fa-file-signature",
+    img: "tramites.jpeg",
+    req: [
+      "Solicitud firmada por el interesado y los testigos propuestos, autorizada por abogado.",
+      "Copia literal del inmueble o certificado de búsqueda catastral, expedidos por los Registros Públicos.",
+      "Todos los documentos que acrediten posesión continua del inmueble por 10 años.",
+      "Copia simple de documento de identidad del solicitante.",
+      "Recibos pagados de luz, agua y teléfono de los últimos diez (10) años.",
+      "Certificación municipal de la persona que figura en sus registros como propietaria o poseedora del bien o los originales de los recibos de autoavalúo pagados de los últimos diez (10) años que sustentan la ocupación del inmueble.",
+      "Declaración testimonial de no menos de 3 ni más de 6 personas, mayores de 25 años de edad, preferentemente vecinos u ocupantes de los inmuebles colindantes del predio."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Donación",
+    icon: "fa-solid fa-gift",
+    img: "donacion.jpg",
+    req: [
+      "Minuta firmada y autorizada por abogado.",
+      "Copia literal actualizada de la partida del inmueble.",
+      "Copia de DNI de los otorgantes.",
+      "Si interviene apoderado: Vigencia de poder SUNARP.",
+      "Hojas HR y PU del autovalúo.",
+      "Constancia de No Adeudo del impuesto predial del donante.",
+      "Liquidación y pago del Impuesto de Alcabala del donatario si corresponde."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Copias Certificadas",
+    icon: "fa-solid fa-file-circle-check",
+    img: "certificaciones.jpg",
+    req: [
+      "Copia literal actual.",
+      "Libro aperturado.",
+      "Copia del libro.",
+      "Constancia de convocatoria o quórum si aplica.",
+      "Ficha RUC."
+    ]
+  },
+  {
+    tipo: "P",
+    titulo: "Transferencia Vehicular",
+    icon: "fa-solid fa-car",
+    img: "trasnferencia.jpg",
+    req: [
+      "DNI del vendedor y comprador.",
+      "Tarjeta de propiedad.",
+      "SOAT vigente.",
+      "Pago de impuesto vehicular si aplica.",
+      "Medio de pago bancarizado.",
+      "Boleta informativa (SUNARP)."
+    ]
+  },
+  
 
 ];
 
