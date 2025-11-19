@@ -214,9 +214,60 @@ const servicios = [
       "Boleta informativa (SUNARP)."
     ]
   },
-  
-
+  {
+    tipo: "P",
+    titulo: "Otros",
+    icon: "fa-solid fa-ellipsis",
+    img: "trasnferencia.jpg",
+    req: [
+      "DNI del vendedor y comprador.",
+      "Tarjeta de propiedad.",
+      "SOAT vigente.",
+      "Pago de impuesto vehicular si aplica.",
+      "Medio de pago bancarizado.",
+      "Boleta informativa (SUNARP)."
+    ]
+  },
+  {
+    tipo: "E",
+    titulo: "Otros",
+    icon: "fa-solid fa-ellipsis",
+    img: "trasnferencia.jpg",
+    req: [
+      "DNI del vendedor y comprador.",
+      "Tarjeta de propiedad.",
+      "SOAT vigente.",
+      "Pago de impuesto vehicular si aplica.",
+      "Medio de pago bancarizado.",
+      "Boleta informativa (SUNARP)."
+    ]
+  }
 ];
+
+// ====================================
+// LISTAS FIJAS PARA "OTROS"
+// ====================================
+const otrosP = [
+  "Rectificación de Partidas",
+  "Cambio de E.I.R.L. a S.A.C.",
+  "Prescripción Adquisitiva de Dominio",
+  "Poder por Escritura Pública",
+  "Separación de Patrimonio",
+  "Transferencia de Posesión",
+  "Donación",
+  "Constitución de Personas Jurídicas"
+];
+
+const otrosE = [
+  "Apertura de Hojas Sueltas",
+  "Apertura de Libros",
+  "Copia Certificada",
+  "Constatación Domiciliaria",
+  "Autorizaciones y Certificaciones",
+  "Vigencia de Poderes",
+  "Otros trámites simples"
+];
+
 
 function cargarServicios() {
   const contP = document.getElementById("lista-protocolares");
@@ -226,7 +277,7 @@ function cargarServicios() {
     const li = document.createElement("li");
     li.className = "serv-item";
     li.innerHTML = `<i class="${s.icon}"></i> ${s.titulo}`;
-    li.addEventListener("click", () => abrirModal(s));
+    li.addEventListener("click", () => abrirServicio(s));
 
     if (s.tipo === "P") contP.appendChild(li);
     else contE.appendChild(li);
@@ -235,11 +286,54 @@ function cargarServicios() {
 
 document.addEventListener("DOMContentLoaded", cargarServicios);
 
+
+function abrirServicio(serv) {
+  if (serv.titulo.toLowerCase() === "otros") {
+    abrirModalOtros(serv.tipo); 
+  } else {
+    abrirModalNormal(serv);
+  }
+}
+
+const modalOtros = document.getElementById("modal-otros");
+const cerrarOtros = modalOtros.querySelector(".close-modal");
+
+function abrirModalOtros(tipo) {
+  const titulo = document.getElementById("otros-titulo");
+  const cont = document.getElementById("otros-lista-contenedor");
+
+  if (tipo === "P") {
+    titulo.textContent = "Otros Servicios";
+    cont.innerHTML = `
+      <div class="modal-list-title">PROTOCOLARES (P)</div>
+      <ul>${otrosP.map(item => `<li>${item}</li>`).join("")}</ul>
+    `;
+  }
+
+  if (tipo === "E") {
+    titulo.textContent = "Otros Servicios";
+    cont.innerHTML = `
+      <div class="modal-list-title">EXTRAPROTOCOLARES (E)</div>
+      <ul>${otrosE.map(item => `<li>${item}</li>`).join("")}</ul>
+    `;
+  }
+
+  modalOtros.style.display = "block";
+}
+
+cerrarOtros.addEventListener("click", () => modalOtros.style.display = "none");
+
+modalOtros.addEventListener("click", e => {
+  if (e.target === modalOtros) modalOtros.style.display = "none";
+});
+
+
 const modal = document.getElementById("modal-servicio");
 const btnCerrar = document.getElementById("cerrar-modal");
 
-function abrirModal(s) {
+function abrirModalNormal(s) {
   const img = document.getElementById("modal-imagen");
+
   if (s.img && s.img.trim() !== "") {
     img.src = "../images/servicios/" + s.img;
     img.style.display = "block";
@@ -267,19 +361,13 @@ document.addEventListener("keydown", e => {
 const btnTop = document.getElementById("btn-top");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btnTop.classList.add("show");
-  } else {
-    btnTop.classList.remove("show");
-  }
+  btnTop.classList.toggle("show", window.scrollY > 300);
 });
 
 btnTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
 
 const menuIcon = document.getElementById("menu-icon");
 const sidebar = document.getElementById("sidebar");
@@ -289,7 +377,5 @@ menuIcon.addEventListener("click", () => {
 });
 
 document.querySelectorAll(".nav-links .nav-item").forEach(item => {
-  item.addEventListener("click", () => {
-    sidebar.classList.remove("activo");
-  });
+  item.addEventListener("click", () => sidebar.classList.remove("activo"));
 });

@@ -19,10 +19,13 @@
   <div class="topbar">
     <div class="topbar-container">
 
-      <div class="topbar-left">
-        <i class="fa-solid fa-phone"></i> 952 180 201
+      <div class="topbar-left" style="font-weight: 700 ;">
+        <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>Contacto vía WhatsApp: 952 180 201
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <i class="fa-solid fa-envelope "></i> <span class="correo">laliaga@notaria-luis-aliaga.com</span>
+        <i class="fa-solid fa-phone"></i>Central Telefónica: (01) 732 2248
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <i class="fa-solid fa-envelope "></i>
+        <span class="correo">laliaga@notaria-luis-aliaga.com</span>
       </div>
 
       <div class="topbar-right">
@@ -37,9 +40,15 @@
 
   <header id="main-header" class="main-header">
     <div class="container header-inner">
-      <div class="menu-icon" id="menu-icon" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></div>
+      <div class="menu-icon" id="menu-icon" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </div>
       <div class="header-left">
-        <div class="logo"> <a href="#inicio"><img src="../images/logo.png" alt="Logo Notaría Luis Aliaga"></a> </div>
+        <div class="logo">
+          <a href="#inicio">
+            <img src="../images/logo.png" alt="Logo Notaría Luis Aliaga">
+          </a>
+        </div>
         <h1 class="nombre-notaria">NOTARÍA LUIS ALIAGA</h1>
       </div>
       <div class="lema">SEGURIDAD JURÍDICA AL SERVICIO DE LA CIUDADANÍA</div>
@@ -48,6 +57,18 @@
         <a href="#somos" class="nav-item">Nosotros</a>
         <a href="#servicios" class="nav-item">Servicios</a>
         <a href="#contacto" class="nav-item">Contacto</a>
+        <div class="sidebar-topbar-mobile">
+          <div><i class="fa-brands fa-whatsapp"></i> WhatsApp: 952 180 201</div>
+          <div><i class="fa-solid fa-phone"></i> Central: (01) 732 2248</div>
+          <div><i class="fa-solid fa-envelope"></i> laliaga@notaria-luis-aliaga.com</div>
+          <div class="sidebar-social">
+            <span>Síguenos:</span>
+            <a href="https://www.facebook.com/people/Notaria-Luis-Aliaga/61579699504750/#" target="_blank">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+        
       </nav>
     </div>
   </header>
@@ -56,15 +77,17 @@
       <div class="inicio-content container">
         <div class="inicio-info">
           <h1 class="inicio-title">Notaría Luis Aliaga</h1>
-          <p class="inicio-sub"> Servicios notariales con profesionalismo, confidencialidad y seguridad jurídica al
-            servicio de la ciudadanía. </p>
+          <p class="inicio-sub"> Servicios notariales con profesionalismo, confidencialidad y seguridad en favor de la
+            ciudadanía. </p>
           <ul class="inicio-list">
             <li><i class="fa-solid fa-circle-check"></i> Asesoría Notarial Especializada</li>
             <li><i class="fa-solid fa-file-signature"></i> Escrituras y Protocolos</li>
             <li><i class="fa-solid fa-handshake-angle"></i> Trámites y Certificaciones</li>
           </ul> <a href="#servicios" class="btn-primary inicio-btn">Ver servicios</a>
         </div>
-        <div class="inicio-imagen"> <img src="../images/fondo.png" alt="Local Notarial" /> </div>
+        <div class="inicio-imagen">
+          <img src="../images/fondo.png" alt="Local Notarial" />
+        </div>
       </div>
     </section>
     <section id="somos" class="section somos">
@@ -131,7 +154,9 @@
     </button>
     <section class="section instituciones">
       <div class="container">
-        <div class="badge"><span>Instituciones</span></div>
+        <div class="badge">
+          <span>Instituciones</span>
+        </div>
         <h2 class="section-title">Instituciones Asociadas</h2>
         <div class="inst-row">
           <div class="inst-box">
@@ -139,30 +164,30 @@
               <img title="SUNAT" src="../images/sunat.png" alt="SUNAT">
             </a>
           </div>
-          
+
           <div class="inst-box">
             <a href="https://www.sbs.gob.pe/" target="_blank">
               <img title="SBS" src="../images/sbs.png" alt="SBS">
             </a>
           </div>
-          
+
           <div class="inst-box">
             <a href="https://identidad.reniec.gob.pe/" target="_blank">
               <img title="RENIEC" src="../images/reniec.png" alt="RENIEC">
             </a>
           </div>
-          
+
           <div class="inst-box">
             <a href="https://www.migraciones.gob.pe/" target="_blank">
               <img title="Migraciones" src="../images/migraciones.jpg" alt="Migraciones">
             </a>
           </div>
-          
+
           <div class="inst-box">
             <a href="https://sprl.sunarp.gob.pe/sprl/ingreso/" target="_blank">
               <img title="Sunarp" src="../images/logo-sunar.png" alt="Sunarp">
             </a>
-          </div> 
+          </div>
         </div>
       </div>
     </section>
@@ -230,6 +255,22 @@
       </div>
     </div>
   </div>
+
+  <div id="modal-otros" class="modal-otros">
+    <div class="modal-otros-content">
+  
+      <span class="close-modal">&times;</span>
+  
+      <h2 id="otros-titulo">Otros Servicios</h2>
+  
+      <div id="otros-lista-contenedor"></div>
+  
+    </div>
+  </div>
+  
+  
+  
+
   <script src="../js/main.js" defer></script>
 </body>
 
