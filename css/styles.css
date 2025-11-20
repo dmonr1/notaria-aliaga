@@ -638,6 +638,7 @@ header {
     padding: 20px;
     z-index: 3000;
     backdrop-filter: blur(4px);
+    height: 100vh;
 }
 
 .modal-servicio.activo {
