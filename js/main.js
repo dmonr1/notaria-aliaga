@@ -305,7 +305,7 @@ function abrirModalOtros(tipo) {
   if (tipo === "P") {
     titulo.textContent = "Otros Servicios";
     cont.innerHTML = `
-      <div class="modal-list-title">PROTOCOLARES (P)</div>
+      <div class="modal-list-title">PROTOCOLARES</div>
       <ul>${otrosP.map(item => `<li>${item}</li>`).join("")}</ul>
     `;
   }
@@ -313,7 +313,7 @@ function abrirModalOtros(tipo) {
   if (tipo === "E") {
     titulo.textContent = "Otros Servicios";
     cont.innerHTML = `
-      <div class="modal-list-title">EXTRAPROTOCOLARES (E)</div>
+      <div class="modal-list-title">EXTRAPROTOCOLARES</div>
       <ul>${otrosE.map(item => `<li>${item}</li>`).join("")}</ul>
     `;
   }
