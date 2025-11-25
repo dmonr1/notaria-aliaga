@@ -110,8 +110,38 @@ body {
     font-weight: 550;
 }
 
+.topbar-right a {
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.topbar-right a i {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    display: inline-block;
+}
+
+.topbar-right a:hover i {
+    opacity: 0.7;
+}
+
 .topbar-right a i {
     font-size: 17px;
+    transition: 0.2s ease-in-out;
+}
+
+.topbar-right a:nth-child(2) i {
+    color: #0077ff;
+}
+
+.topbar-right a:nth-child(3) i {
+    color: #0A66C2;
+}
+
+.topbar-right a:nth-child(4) i {
+    color: #E4405F;
 }
 
 .topbar-right a:hover i {
@@ -196,7 +226,7 @@ header {
 }
 
 .section {
-    padding: 56px 0
+    padding: 56px 0;
 }
 
 
@@ -220,7 +250,6 @@ header {
     z-index: 2;
 }
 
-
 .badge {
     display: flex;
     justify-content: center;
@@ -233,7 +262,7 @@ header {
     font-weight: 700;
     padding: 6px 14px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 15px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06)
 }
 
