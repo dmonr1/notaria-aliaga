@@ -379,3 +379,29 @@ menuIcon.addEventListener("click", () => {
 document.querySelectorAll(".nav-links .nav-item").forEach(item => {
   item.addEventListener("click", () => sidebar.classList.remove("activo"));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal-bienvenida");
+  const cerrar = document.querySelector(".cerrar-bienvenida");
+
+  if (!sessionStorage.getItem("modalMostrado")) {
+    modal.classList.add("active");
+    sessionStorage.setItem("modalMostrado", "true");
+  }
+
+  const cerrarModal = () => {
+    modal.classList.add("fade-out");
+
+    setTimeout(() => {
+      modal.classList.remove("active", "fade-out");
+    }, 300);
+  };
+
+  cerrar.addEventListener("click", cerrarModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      cerrarModal();
+    }
+  });
+});

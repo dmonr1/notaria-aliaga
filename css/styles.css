@@ -883,6 +883,118 @@ header {
     line-height: 1.4;
 }
 
+.modal-bienvenida {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bienvenida.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-bienvenida.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.modal-bienvenida-content {
+    background: #fff;
+    padding: 35px;
+    border-radius: 18px;
+    width: 420px;
+    max-width: 90%;
+    text-align: center;
+    position: relative;
+    animation: scaleIn 0.3s ease;
+}
+
+/* ICONO GRANDE */
+.modal-icono {
+    font-size: 55px;
+    color: #25d366;
+    margin-bottom: 10px;
+}
+
+/* TEXTO */
+.modal-texto {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* LISTA */
+.modal-lista {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.modal-lista li {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.modal-lista i {
+    color: #25d366;
+}
+
+/* BOTON */
+.btn-wsp-modal {
+    display: inline-block;
+    margin-top: 15px;
+    background: #25d366;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-wsp-modal:hover {
+    transform: translateY(-2px);
+}
+
+/* CERRAR */
+.cerrar-bienvenida {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 @media(max-width: 780px) {
     .modal-body {
         flex-direction: column;
