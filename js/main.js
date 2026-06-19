@@ -405,3 +405,149 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnConvocatoria = document.getElementById("btn-convocatoria");
+  const modalConvocatoria = document.getElementById("modal-convocatoria");
+  const cerrarConvocatoria = document.getElementById("cerrar-convocatoria");
+  const avisoConvocatoria = document.querySelector(".convocatoria-flotante");
+  const btnDetalleConvocatoria = document.getElementById("btn-detalle-convocatoria");
+  const modalBienvenida = document.getElementById("modal-bienvenida");
+
+  if (!btnConvocatoria || !modalConvocatoria || !cerrarConvocatoria) return;
+
+  const abrirConvocatoria = () => {
+    avisoConvocatoria?.classList.remove("convocatoria-flotante-activa");
+    modalBienvenida?.classList.remove("active", "fade-out");
+    modalConvocatoria.classList.add("active");
+    modalConvocatoria.setAttribute("aria-hidden", "false");
+  };
+
+  const cerrarModalConvocatoria = () => {
+    modalConvocatoria.classList.remove("active");
+    modalConvocatoria.setAttribute("aria-hidden", "true");
+  };
+
+  btnConvocatoria.addEventListener("click", abrirConvocatoria);
+  btnDetalleConvocatoria?.addEventListener("click", abrirConvocatoria);
+  cerrarConvocatoria.addEventListener("click", cerrarModalConvocatoria);
+
+  modalConvocatoria.addEventListener("click", (e) => {
+    if (e.target === modalConvocatoria) {
+      cerrarModalConvocatoria();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      cerrarModalConvocatoria();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".topbar", {
+    y: -28,
+    opacity: 0,
+    duration: 0.55,
+    ease: "power2.out"
+  });
+
+  gsap.from(".header-left, .lema, .nav-links .nav-item", {
+    y: -18,
+    opacity: 0,
+    duration: 0.55,
+    stagger: 0.08,
+    delay: 0.08,
+    ease: "power2.out"
+  });
+
+  gsap.from(".inicio-info > *", {
+    y: 32,
+    opacity: 0,
+    duration: 0.75,
+    stagger: 0.12,
+    delay: 0.18,
+    ease: "power3.out",
+    clearProps: "all"
+  });
+
+  gsap.from(".inicio-imagen", {
+    x: 44,
+    opacity: 0,
+    duration: 0.85,
+    delay: 0.28,
+    ease: "power3.out",
+    clearProps: "all"
+  });
+
+  gsap.from(".convocatoria-flotante, .btn-wsp", {
+    scale: 0.65,
+    opacity: 0,
+    duration: 0.55,
+    stagger: 0.1,
+    delay: 0.8,
+    ease: "back.out(1.7)",
+    clearProps: "opacity,scale"
+  });
+
+  const animarEntrada = (selector, opciones = {}) => {
+    const elementos = gsap.utils.toArray(selector);
+    if (!elementos.length) return;
+
+    elementos.forEach((elemento) => {
+      gsap.from(elemento, {
+        y: opciones.y ?? 36,
+        opacity: 0,
+        duration: opciones.duration ?? 0.7,
+        ease: opciones.ease ?? "power2.out",
+        scrollTrigger: {
+          trigger: elemento,
+          start: opciones.start ?? "top 86%",
+          toggleActions: "play none none none",
+          once: true
+        },
+        clearProps: "all"
+      });
+    });
+  };
+
+  gsap.utils.toArray(".section").forEach((section) => {
+    const hijos = section.querySelectorAll(
+      ".badge, .section-title, .sub-tittle, .grupo-title, .card-nosotros, .map-full"
+    );
+
+    if (!hijos.length) return;
+
+    gsap.from(hijos, {
+      y: 34,
+      opacity: 0,
+      duration: 0.68,
+      stagger: 0.08,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 78%",
+        toggleActions: "play none none none",
+        once: true
+      },
+      clearProps: "all"
+    });
+  });
+
+  animarEntrada(".separator", { y: 12, duration: 0.45, start: "top 92%" });
+  animarEntrada(".footer-columna", { y: 28, start: "top 88%" });
+  animarEntrada(".footer-copy", { y: 16, duration: 0.45, start: "top 94%" });
+
+  gsap.set(".serv-item, .inst-box, .inst-box img", {
+    opacity: 1,
+    visibility: "visible"
+  });
+
+  ScrollTrigger.refresh();
+});

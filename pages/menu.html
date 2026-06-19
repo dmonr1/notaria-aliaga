@@ -204,39 +204,77 @@
         </div>
         <h2 class="section-title">Instituciones Asociadas</h2>
         <div class="inst-row">
-          <div class="inst-box">
-            <a href="https://www.sunat.gob.pe/" target="_blank">
-              <img title="SUNAT" src="../images/sunat.png" alt="SUNAT">
-            </a>
-          </div>
+          <div class="inst-track">
+            <div class="inst-box">
+              <a href="https://www.sunat.gob.pe/" target="_blank">
+                <img title="SUNAT" src="../images/sunat.png" alt="SUNAT">
+              </a>
+            </div>
 
-          <div class="inst-box">
-            <a href="https://www.sbs.gob.pe/" target="_blank">
-              <img title="SBS" src="../images/sbs.png" alt="SBS">
-            </a>
-          </div>
+            <div class="inst-box">
+              <a href="https://www.sbs.gob.pe/" target="_blank">
+                <img title="SBS" src="../images/sbs.png" alt="SBS">
+              </a>
+            </div>
 
-          <div class="inst-box">
-            <a href="https://identidad.reniec.gob.pe/" target="_blank">
-              <img title="RENIEC" src="../images/reniec.png" alt="RENIEC">
-            </a>
-          </div>
+            <div class="inst-box">
+              <a href="https://identidad.reniec.gob.pe/" target="_blank">
+                <img title="RENIEC" src="../images/reniec.png" alt="RENIEC">
+              </a>
+            </div>
 
-          <div class="inst-box">
-            <a href="https://www.migraciones.gob.pe/" target="_blank">
-              <img title="Migraciones" src="../images/migraciones.jpg" alt="Migraciones">
-            </a>
-          </div>
+            <div class="inst-box">
+              <a href="https://www.migraciones.gob.pe/" target="_blank">
+                <img title="Migraciones" src="../images/migraciones.jpg" alt="Migraciones">
+              </a>
+            </div>
 
-          <div class="inst-box">
-            <a href="https://sprl.sunarp.gob.pe/sprl/ingreso/" target="_blank">
-              <img title="Sunarp" src="../images/logo-sunar.png" alt="Sunarp">
-            </a>
+            <div class="inst-box">
+              <a href="https://sprl.sunarp.gob.pe/sprl/ingreso/" target="_blank">
+                <img title="Sunarp" src="../images/logo-sunar.png" alt="Sunarp">
+              </a>
+            </div>
+
+            <div class="inst-box" aria-hidden="true">
+              <a href="https://www.sunat.gob.pe/" target="_blank" tabindex="-1">
+                <img title="SUNAT" src="../images/sunat.png" alt="">
+              </a>
+            </div>
+
+            <div class="inst-box" aria-hidden="true">
+              <a href="https://www.sbs.gob.pe/" target="_blank" tabindex="-1">
+                <img title="SBS" src="../images/sbs.png" alt="">
+              </a>
+            </div>
+
+            <div class="inst-box" aria-hidden="true">
+              <a href="https://identidad.reniec.gob.pe/" target="_blank" tabindex="-1">
+                <img title="RENIEC" src="../images/reniec.png" alt="">
+              </a>
+            </div>
+
+            <div class="inst-box" aria-hidden="true">
+              <a href="https://www.migraciones.gob.pe/" target="_blank" tabindex="-1">
+                <img title="Migraciones" src="../images/migraciones.jpg" alt="">
+              </a>
+            </div>
+
+            <div class="inst-box" aria-hidden="true">
+              <a href="https://sprl.sunarp.gob.pe/sprl/ingreso/" target="_blank" tabindex="-1">
+                <img title="Sunarp" src="../images/logo-sunar.png" alt="">
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+  <div class="convocatoria-flotante convocatoria-flotante-activa">
+    <button id="btn-convocatoria" class="btn-convocatoria" type="button" aria-label="Ver nueva convocatoria">
+      <img src="../images/lupa.png" alt="">
+    </button>
+    <div class="convocatoria-nube">Te estamos buscando! 🔎</div>
+  </div>
   <a href="https://wa.me/51991373422" target="_blank" class="btn-wsp" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
@@ -290,7 +328,7 @@
       </div>
     </div>
     <div class="footer-copy">
-      <p>© 2025 Notaría Luis Aliaga. Todos los derechos reservados.</p>
+      <p>© 2026 Notaría Luis Aliaga. Todos los derechos reservados.</p>
     </div>
   </footer>
   <div id="modal-servicio" class="modal-servicio" aria-hidden="true">
@@ -324,31 +362,57 @@
 
   <div id="modal-bienvenida" class="modal-bienvenida">
     <div class="modal-bienvenida-content">
-  
+
       <span class="cerrar-bienvenida">&times;</span>
-  
+
       <div class="modal-icono">
-        <i class="fa-brands fa-whatsapp"></i>
+        <i class="fa-solid fa-bell"></i>
       </div>
-  
-      <h2>Nuevo número de WhatsApp</h2>
-  
+
+      <h2>Avisos</h2>
+
       <p class="modal-texto">
-        Hemos actualizado nuestro canal de atención para brindarte un mejor servicio.
+        Tenemos novedades importantes para ti.
       </p>
-  
-      <ul class="modal-lista">
-        <li><i class="fa-solid fa-circle-check"></i> Atención rápida y directa</li>
-        <li><i class="fa-solid fa-user-shield"></i> Comunicación segura</li>
-      </ul>
-  
-      <a href="https://wa.me/51991373422" target="_blank" class="btn-wsp-modal">
-        <i class="fa-brands fa-whatsapp"></i> 991 373 422
-      </a>
-  
+
+      <div class="modal-avisos-lista">
+        <div class="modal-aviso-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <h3>Nuevo numero de WhatsApp</h3>
+            <p>Actualizamos nuestro canal de atencion para brindarte un mejor servicio.</p>
+          </div>
+          <a href="https://wa.me/51991373422" target="_blank" class="btn-wsp-modal">
+            <i class="fa-brands fa-whatsapp"></i> 991 373 422
+          </a>
+        </div>
+
+        <div class="modal-aviso-item">
+          <i class="fa-solid fa-briefcase"></i>
+          <div>
+            <h3>Oportunidad laboral</h3>
+            <p>Estamos buscando talento para formar parte de nuestro equipo.</p>
+          </div>
+          <button id="btn-detalle-convocatoria" class="btn-detalle-convocatoria" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i> Ver detalle
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="modal-convocatoria" class="modal-convocatoria" aria-hidden="true">
+    <div class="modal-convocatoria-content">
+      <button id="cerrar-convocatoria" class="cerrar-convocatoria" type="button" aria-label="Cerrar convocatoria">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img class="modal-convocatoria-img" src="../images/convocatoria.png"
+        alt="Convocatoria laboral para asistente de oficina">
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="../js/main.js" defer></script>
 </body>
 

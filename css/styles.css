@@ -315,8 +315,11 @@ header {
 
 .inicio {
     background: #008f39;
-    padding: 80px 0;
+    min-height: clamp(580px, 76vh, 760px);
+    padding: 38px 0;
     color: #ffffff;
+    display: flex;
+    align-items: center;
 }
 
 .inicio-content {
@@ -513,26 +516,45 @@ header {
 }
 
 .inst-row {
+    width: 100%;
+    overflow: hidden;
+    padding: 22px 0;
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+
+.inst-track {
     display: flex;
-    justify-content: center;
-    gap: 22px;
-    padding: 15px 0;
-    flex-wrap: wrap;
+    width: max-content;
+    gap: 28px;
+    animation: institucionesSlide 26s linear infinite;
+}
+
+.inst-row:hover .inst-track {
+    animation-play-state: paused;
 }
 
 .inst-box {
-    flex: 0 0 160px;
-    height: 90px;
+    flex: 0 0 210px;
+    height: 118px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 14px;
     transition: .3s;
     cursor: pointer;
 
     background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.inst-box a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inst-box:hover {
@@ -550,6 +572,22 @@ header {
 
 .inst-box:hover img {
     opacity: 1;
+}
+
+@keyframes institucionesSlide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-50% - 14px));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inst-track {
+        animation: none;
+    }
 }
 
 .instituciones {
@@ -781,6 +819,92 @@ header {
     margin-top: 2px;
 }
 
+.convocatoria-flotante {
+    position: fixed;
+    right: 20px;
+    bottom: 92px;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-convocatoria {
+    width: 54px;
+    height: 54px;
+    border: none;
+    border-radius: 50%;
+    background: #f4b000;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
+    animation: convocatoriaPulse 1.7s ease-in-out infinite;
+}
+
+.btn-convocatoria:hover {
+    transform: translateY(-3px);
+}
+
+.btn-convocatoria img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.convocatoria-nube {
+    position: absolute;
+    right: 68px;
+    bottom: 8px;
+    width: 210px;
+    padding: 10px 13px;
+    background: #ffffff;
+    color: #11301f;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(6px) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.convocatoria-flotante:hover .convocatoria-nube,
+.convocatoria-flotante:focus-within .convocatoria-nube,
+.convocatoria-flotante.convocatoria-flotante-activa .convocatoria-nube {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.convocatoria-nube::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    bottom: 15px;
+    border-width: 8px 0 8px 9px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+@keyframes convocatoriaPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 7px 22px rgba(244, 176, 0, 0.45);
+    }
+}
+
 .btn-wsp {
     position: fixed;
     bottom: 20px;
@@ -803,6 +927,64 @@ header {
 .btn-wsp:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-convocatoria {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(6px);
+    z-index: 10002;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+}
+
+.modal-convocatoria.active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+}
+
+.modal-convocatoria-content {
+    position: relative;
+    width: min(96vw, 1080px);
+    max-height: 92vh;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    animation: scaleIn 0.25s ease;
+}
+
+.modal-convocatoria-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 92vh;
+    object-fit: contain;
+}
+
+.cerrar-convocatoria {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.72);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.cerrar-convocatoria:hover {
+    background: #126110;
 }
 
 .modal-otros {
@@ -907,11 +1089,12 @@ header {
     background: #fff;
     padding: 35px;
     border-radius: 18px;
-    width: 420px;
+    width: 760px;
     max-width: 90%;
     text-align: center;
     position: relative;
     animation: scaleIn 0.3s ease;
+    font-family: var(--inter);
 }
 
 /* ICONO GRANDE */
@@ -947,21 +1130,124 @@ header {
     color: #25d366;
 }
 
+.modal-avisos-lista {
+    display: grid;
+    grid-template-columns: 1fr 4px 1fr;
+    gap: 22px;
+    margin-top: 18px;
+    text-align: left;
+    align-items: stretch;
+}
+
+.modal-avisos-lista::before {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    width: 4px;
+    background: #126110;
+    border-radius: 999px;
+}
+
+.modal-aviso-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.modal-aviso-item > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.modal-aviso-item:first-child {
+    grid-column: 1;
+}
+
+.modal-aviso-item:last-child {
+    grid-column: 3;
+}
+
+.modal-aviso-item > i {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--verde);
+    font-size: 22px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+.modal-aviso-item h3 {
+    margin: 0 0 5px;
+    color: var(--verde);
+    font-size: 16px;
+}
+
+.modal-aviso-item p {
+    margin: 0 0 10px;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.45;
+    flex: 1;
+}
+
 /* BOTON */
 .btn-wsp-modal {
-    display: inline-block;
-    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
+    margin: 15px auto 0;
     background: #25d366;
     color: #fff;
     padding: 12px 20px;
     border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
+    font-family: var(--inter);
     transition: 0.2s;
 }
 
 .btn-wsp-modal:hover {
     transform: translateY(-2px);
+}
+
+.btn-detalle-convocatoria {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
+    margin: 18px auto 0;
+    background: #f4b000;
+    color: #ffffff;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--inter);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-detalle-convocatoria:hover {
+    transform: translateY(-2px);
+    background: #d99c00;
 }
 
 /* CERRAR */
@@ -999,6 +1285,24 @@ header {
     .modal-body {
         flex-direction: column;
     }
+
+    .modal-bienvenida-content {
+        width: 420px;
+    }
+
+    .modal-avisos-lista {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .modal-avisos-lista::before {
+        display: none;
+    }
+
+    .modal-aviso-item:first-child,
+    .modal-aviso-item:last-child {
+        grid-column: auto;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -1028,9 +1332,9 @@ header {
         height: 260px
     }
 
-    .inst-item {
-        width: 180px;
-        height: 88px
+    .inst-box {
+        flex-basis: 185px;
+        height: 104px;
     }
 
     .footer-contenedor {
@@ -1045,6 +1349,11 @@ header {
 @media (max-width: 720px) {
     .inicio-imagen {
         display: none;
+    }
+
+    .inicio {
+        min-height: 72vh;
+        padding: 34px 0;
     }
 
     .nav-links {
@@ -1088,13 +1397,15 @@ header {
         height: 200px
     }
 
-    .inst-item {
-        width: 140px;
-        height: 72px
+    .inst-track {
+        gap: 18px;
+        animation-duration: 22s;
     }
 
-    .inst-carousel {
-        animation-duration: 36s
+    .inst-box {
+        flex-basis: 150px;
+        height: 86px;
+        padding: 10px;
     }
 
     .modal-contenido {
@@ -1174,5 +1485,32 @@ header {
 
     .nav-links {
         padding-top: 140px !important;
+    }
+
+    .convocatoria-flotante {
+        right: 16px;
+        bottom: 88px;
+    }
+
+    .btn-convocatoria {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    .convocatoria-nube {
+        right: 62px;
+        width: 165px;
+        font-size: 12px;
+        padding: 9px 11px;
+    }
+
+    .modal-convocatoria {
+        padding: 12px;
+    }
+
+    .modal-convocatoria-img {
+        width: 100% !important;
+        border-radius: 0;
     }
 }
